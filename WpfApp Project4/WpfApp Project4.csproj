@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Pizz.png" />
     <None Remove="Assets\pizzabg.png" />
     <None Remove="Assets\seamlesspizza.png" />
   </ItemGroup>
@@ -18,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\Pizz.png" />
     <Resource Include="Assets\pizzabg.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

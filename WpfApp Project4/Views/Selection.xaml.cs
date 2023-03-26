@@ -12,7 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using WpfApp_Project4.Views;
 
 namespace WpfApp_Project4
 {
@@ -50,17 +50,26 @@ namespace WpfApp_Project4
 
         private void Bestellingen_Click(object sender, RoutedEventArgs e)
         {
-
+            music.Stop();
+            Bestellingen bestellingen = new Bestellingen();
+            bestellingen.Show();
+            this.Close();
         }
 
         private void Units_Click(object sender, RoutedEventArgs e)
         {
-
+            music.Stop();
+            Units units = new Units();
+            units.Show();
+            this.Close();
         }
 
         private void Manager_Click(object sender, RoutedEventArgs e)
         {
-
+            music.Stop();
+            Manager manager = new Manager();
+            manager.Show();
+            this.Close();
         }
     }
 }
