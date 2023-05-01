@@ -23,5 +23,17 @@ namespace WpfApp_Project4.Views
         {
             InitializeComponent();
         }
+
+
+
+
+
+
+
+        private void Selection_Click(object sender, RoutedEventArgs e)
+        {
+            new Selection().Show();
+            this.Close();
+        }
     }
 }

@@ -7,6 +7,102 @@
         mc:Ignorable="d"
         Title="Bestellingen" Height="450" Width="800">
     <Grid>
-        <TextBlock>hhhhhh</TextBlock>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+
+        <ListView Grid.Column="0" ItemsSource="{Binding Ingredients}" SelectedItem="{Binding SelectedIngredient}" 
+                  d:ItemsSource="{d:SampleData ItemCount=15}" Margin="10,10,10,15" Background="LightYellow">
+            <ListView.ItemTemplate>
+                <!-- Bestellingen -->
+                <DataTemplate>
+                    <Border BorderBrush="Red" BorderThickness="2" Background="Orange">
+                        <StackPanel Orientation="Vertical" Width="340">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Width="100" Margin="2" Foreground="White" FontWeight="bold">Name</Label>
+                                <TextBlock Text="{Binding Gale}" Width="120"  Margin="2" TextWrapping="Wrap" Foreground="White"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <Label Width="100" Margin="2" Foreground="White" FontWeight="bold">Adres</Label>
+                                <TextBlock Text="{Binding sixtythreefiftythreeJuanTabo}" Width="200"  Margin="2" TextWrapping="Wrap" Foreground="White"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <Label Width="100" Margin="2" Foreground="White" FontWeight="bold">Woonplaats</Label>
+                                <TextBlock Text="{Binding ApartmentSix}" Width="200"  Margin="2" TextWrapping="Wrap" Foreground="White"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <Label Width="100" Margin="2" Foreground="White" FontWeight="bold">Telefoonnummer</Label>
+                                <TextBlock Text="{Binding phonenumber}" Width="200"  Margin="2" TextWrapping="Wrap" Foreground="White"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <Label Width="100" Margin="2" Foreground="White" FontWeight="bold">E-mail:</Label>
+                                <TextBlock Text="{Binding galeboetticheratgmaildotcom}" Width="200"  Margin="2" TextWrapping="Wrap" Foreground="White"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <Label Width="100" Margin="2" Foreground="White" FontWeight="bold">Totaalprijs:</Label>
+                                <TextBlock Text="{Binding OneMillionDollars}" Width="200" Margin="2" TextWrapping="Wrap" Foreground="White"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <Label Width="100" Margin="2" Foreground="White" FontWeight="bold">Bestelstatus:</Label>
+                                <TextBlock Text="{Binding Onderweg}" Width="200"  Margin="2" TextWrapping="Wrap" Foreground="White"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ListView Grid.Column="1" ItemsSource="{Binding Ingredients}" SelectedItem="{Binding SelectedIngredient}" 
+                  d:ItemsSource="{d:SampleData ItemCount=15}" Margin="10,10,10,15" Background="LightYellow">
+            <ListView.ItemTemplate>
+                <!-- Bestelrijen -->
+                <DataTemplate>
+                    <Border BorderBrush="Red" BorderThickness="2" Background="Orange">
+                        <StackPanel Orientation="Vertical" Width="340">
+                            <StackPanel Orientation="Horizontal" >
+                                <Label Width="100"  Margin="2" Foreground="White" FontWeight="bold">PizzaNaam:</Label>
+                                <TextBlock Text="{Binding VeganSalami}" Width="120"  Margin="2" TextWrapping="Wrap" Foreground="White"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Width="100"  Margin="2" Foreground="White" FontWeight="bold">Afmeting:</Label>
+                                <TextBlock Text="{Binding MuyBien}" Width="120"  Margin="2" TextWrapping="Wrap" Foreground="White"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Width="100"  Margin="2" Foreground="White" FontWeight="bold">Aantal:</Label>
+                                <TextBlock Text="{Binding three}" Width="120"  Margin="2" TextWrapping="Wrap" Foreground="White"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Width="100"  Margin="2" Foreground="White" FontWeight="bold">Regelprijs::</Label>
+                                <TextBlock Text="{Binding sixdollars}" Width="120"  Margin="2" TextWrapping="Wrap" Foreground="White"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Label Grid.Column="0" Grid.Row="1" Margin="10,0,100,45" FontSize="15">Status Geselecteerde Bestelling</Label>
+        <ComboBox Grid.Column="0" Grid.Row="1" Margin="10,35,100,10" />
+
+        <Button Grid.Row="1" Grid.Column="1" Content="Terug" Margin="150,35,10,10" FontSize="15" FontWeight="UltraBold" Foreground="White" BorderBrush="Orange" BorderThickness="3" Click="Selection_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <ImageBrush ImageSource="../Assets/pizzabg.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,150,150"/>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>

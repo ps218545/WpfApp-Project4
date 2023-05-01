@@ -26,8 +26,8 @@ namespace WpfApp_Project4
         public Selection()
         {
             InitializeComponent();
-            music.Load();
-            music.PlayLooping();
+            //music.Load();
+            //music.PlayLooping();
         }
 
         private void Mute_Click(object sender, RoutedEventArgs e)
@@ -59,8 +59,9 @@ namespace WpfApp_Project4
         private void Units_Click(object sender, RoutedEventArgs e)
         {
             music.Stop();
-            Units units = new Units();
-            units.Show();
+            //Units units = new Units();
+            //units.Show();
+            new Units().Show();
             this.Close();
         }
 
