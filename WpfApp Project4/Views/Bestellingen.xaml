@@ -16,36 +16,42 @@
             <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
 
-        <ListView Grid.Column="0" ItemsSource="{Binding Ingredients}" SelectedItem="{Binding SelectedIngredient}" 
-                  d:ItemsSource="{d:SampleData ItemCount=15}" Margin="10,10,10,15" Background="LightYellow">
+        <ListView Grid.Column="0" ItemsSource="{Binding Bestellingenn}" SelectedItem="{Binding SelectedBestelling}" 
+                  d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,10,10,15" Background="LightYellow">
             <ListView.ItemTemplate>
                 <!-- Bestellingen -->
                 <DataTemplate>
                     <Border BorderBrush="Red" BorderThickness="2" Background="Orange">
                         <StackPanel Orientation="Vertical" Width="340">
                             <StackPanel Orientation="Horizontal">
-                                <Label Width="100" Margin="2" Foreground="White" FontWeight="bold">Name</Label>
-                                <TextBlock Text="{Binding Gale}" Width="120"  Margin="2" TextWrapping="Wrap" Foreground="White"/>
+                                <Label Width="100" Margin="2" Foreground="White" FontWeight="bold">Naam</Label>
+                                <TextBlock  Width="80" Text="{Binding Klant.VoorNaam}" Margin="2" TextWrapping="Wrap" Foreground="White" />
+                                <TextBlock  Width="100" Text="{Binding Klant.AchterNaam}" Margin="2" TextWrapping="Wrap" Foreground="White" />
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
                                 <Label Width="100" Margin="2" Foreground="White" FontWeight="bold">Adres</Label>
-                                <TextBlock Text="{Binding sixtythreefiftythreeJuanTabo}" Width="200"  Margin="2" TextWrapping="Wrap" Foreground="White"/>
+                                <TextBlock Text="{Binding Klant.Adres}" Width="200"  Margin="2" TextWrapping="Wrap" Foreground="White"/>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
-                                <Label Width="100" Margin="2" Foreground="White" FontWeight="bold">Woonplaats</Label>
-                                <TextBlock Text="{Binding ApartmentSix}" Width="200"  Margin="2" TextWrapping="Wrap" Foreground="White"/>
+                                <Label Width="100" Margin="2" Foreground="White" FontWeight="bold">PostCode</Label>
+                                <TextBlock Text="{Binding Klant.PostCode}" Width="200"  Margin="2" TextWrapping="Wrap" Foreground="White"/>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
                                 <Label Width="100" Margin="2" Foreground="White" FontWeight="bold">Telefoonnummer</Label>
-                                <TextBlock Text="{Binding phonenumber}" Width="200"  Margin="2" TextWrapping="Wrap" Foreground="White"/>
+                                <TextBlock Text="{Binding Klant.Nummer}" Width="200"  Margin="2" TextWrapping="Wrap" Foreground="White"/>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
                                 <Label Width="100" Margin="2" Foreground="White" FontWeight="bold">E-mail:</Label>
-                                <TextBlock Text="{Binding galeboetticheratgmaildotcom}" Width="200"  Margin="2" TextWrapping="Wrap" Foreground="White"/>
+                                <TextBlock Text="{Binding Klant.Mail}" Width="200"  Margin="2" TextWrapping="Wrap" Foreground="White"/>
+                            </StackPanel>
+                            
+                            <StackPanel Orientation="Horizontal">
+                                <Label Width="100" Margin="2" Foreground="White" FontWeight="bold">Datum:</Label>
+                                <TextBlock Text="{Binding Datum}" Width="200" Margin="2" TextWrapping="Wrap" Foreground="White"/>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
@@ -91,7 +97,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Label Grid.Column="0" Grid.Row="1" Margin="10,0,100,45" FontSize="15">Status Geselecteerde Bestelling</Label>
+        <Label Grid.Column="0" Grid.Row="1" Margin="10,0,100,45" FontSize="15">Status geselecteerde bestelling</Label>
         <ComboBox Grid.Column="0" Grid.Row="1" Margin="10,35,100,10" />
 
         <Button Grid.Row="1" Grid.Column="1" Content="Terug" Margin="150,35,10,10" FontSize="15" FontWeight="UltraBold" Foreground="White" BorderBrush="Orange" BorderThickness="3" Click="Selection_Click">

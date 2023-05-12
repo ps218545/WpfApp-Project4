@@ -8,6 +8,9 @@ namespace WpfApp_Project4.Models
 {
     public class Bestelregel
     {
+        //bestelregelid
+        // (misschien bestellingid)
+
         // Aantal
         // Afmeting
         // afmeting enum call
