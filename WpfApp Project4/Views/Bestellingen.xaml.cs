@@ -42,7 +42,8 @@ namespace WpfApp_Project4.Views
             get { return selectedBestelling; }
             set
             {
-                SelectedBestelling = value;
+                selectedBestelling = value;
+                PopulateBestelRegels();
                 OnPropertyChanged();
             }
         }
@@ -53,12 +54,11 @@ namespace WpfApp_Project4.Views
             get { return bestellingenn; }
             set { bestellingenn = value; OnPropertyChanged(); }
         }
-
-        private uint aantal;
-        public uint Aantal
+        private ObservableCollection<Bestelregel> bestelRegels = new();
+        public ObservableCollection<Bestelregel> BestelRegels
         {
-            get { return aantal; }
-            set { aantal = value; OnPropertyChanged(); }
+            get { return bestelRegels; }
+            set { bestelRegels = value; OnPropertyChanged(); }
         }
         #endregion
 
@@ -66,7 +66,6 @@ namespace WpfApp_Project4.Views
         public Bestellingen()
         {
             PopulateBestellingen();
-
             InitializeComponent();
             DataContext = this;
         }
@@ -81,8 +80,22 @@ namespace WpfApp_Project4.Views
             }
         }
 
-
-
+        private void PopulateBestelRegels()
+        {
+            BestelRegels.Clear();
+            if (SelectedBestelling != null)
+            {
+                string result = db.GetBestelRegelsByBestelling(SelectedBestelling.BestellingId, BestelRegels);
+                if (result != Project4db.OK)
+                {
+                    MessageBox.Show(result + serviceDeskBericht);
+                }
+            }
+            else
+            {
+                bestelRegels.Clear();
+            }
+        }
 
         private void Selection_Click(object sender, RoutedEventArgs e)
         {

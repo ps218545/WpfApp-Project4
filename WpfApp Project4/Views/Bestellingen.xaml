@@ -25,7 +25,7 @@
                         <StackPanel Orientation="Vertical" Width="340">
                             <StackPanel Orientation="Horizontal">
                                 <Label Width="100" Margin="2" Foreground="White" FontWeight="bold">Naam</Label>
-                                <TextBlock  Width="80" Text="{Binding Klant.VoorNaam}" Margin="2" TextWrapping="Wrap" Foreground="White" />
+                                <TextBlock  Width="60" Text="{Binding Klant.VoorNaam}" Margin="2" TextWrapping="Wrap" Foreground="White" />
                                 <TextBlock  Width="100" Text="{Binding Klant.AchterNaam}" Margin="2" TextWrapping="Wrap" Foreground="White" />
                             </StackPanel>
 
@@ -69,7 +69,7 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <ListView Grid.Column="1" ItemsSource="{Binding Ingredients}" SelectedItem="{Binding SelectedIngredient}" 
+        <ListView Grid.Column="1" ItemsSource="{Binding BestelRegels}" SelectedItem="{Binding SelectedIngredient}" 
                   d:ItemsSource="{d:SampleData ItemCount=15}" Margin="10,10,10,15" Background="LightYellow">
             <ListView.ItemTemplate>
                 <!-- Bestelrijen -->
@@ -78,7 +78,7 @@
                         <StackPanel Orientation="Vertical" Width="340">
                             <StackPanel Orientation="Horizontal" >
                                 <Label Width="100"  Margin="2" Foreground="White" FontWeight="bold">PizzaNaam:</Label>
-                                <TextBlock Text="{Binding VeganSalami}" Width="120"  Margin="2" TextWrapping="Wrap" Foreground="White"/>
+                                <TextBlock Text="{Binding Product.ProductName}" Width="120"  Margin="2" TextWrapping="Wrap" Foreground="White"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Width="100"  Margin="2" Foreground="White" FontWeight="bold">Afmeting:</Label>

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WpfApp_Project4.Models
 {
-    internal class Product
+    public class Product
     {
         public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string? name = null)
@@ -17,12 +17,18 @@ namespace WpfApp_Project4.Models
         }
 
 
-        private string? name;
-        public string? Name
+        private ulong productId;
+        public ulong ProductId
         {
-            get { return name; }
-            set { name = value; OnPropertyChanged(); }
+            get { return productId; }
+            set { productId = value; OnPropertyChanged(); }
         }
-        // prijs
+
+        private string? productName;
+        public string? ProductName
+        {
+            get { return productName; }
+            set { productName = value; OnPropertyChanged(); }
+        }
     }
 }

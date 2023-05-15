@@ -54,5 +54,7 @@ namespace WpfApp_Project4.Models
             get { return klant; }
             set { klant = value; OnPropertyChanged(); }
         }
+
+        public ICollection<Bestelregel>? BestelRegels { get; set; }
     }
 }

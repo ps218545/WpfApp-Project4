@@ -77,5 +77,64 @@ namespace WpfApp_Project4.Models
             }
             return methodResult;
         }
+
+
+
+        public string GetBestelRegelsByBestelling(int bestellingId, ICollection<Bestelregel> bestelRegels)
+        {
+            if (bestelRegels == null)
+            {
+                throw new ArgumentException("Ongeldig argument bij gebruik van GetBestelRegelsByBestelling");
+            }
+
+            string methodResult = UNKNOWN;
+
+
+            using (MySqlConnection conn = new(connString))
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand sql = conn.CreateCommand();
+                    sql.CommandText = @"
+                            SELECT br.bestelregelID, br.bestellingID, br.productId,
+                                   p.id as 'ProductId', p.name
+                            FROM bestelregels br
+                            INNER JOIN products p ON p.id = br.productId
+                            WHERE br.bestellingID = @bestellingID
+                        ";
+                    sql.Parameters.AddWithValue("@bestellingID", bestellingId);
+                    MySqlDataReader reader = sql.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Bestelregel bestelRegel = new()
+                        {
+                            BestelRegelId = (int)reader["bestelregelID"],
+                            BestellingId = (int)reader["bestellingID"],
+                            // afmeting
+                            ProductId = (ulong)reader["ProductId"],
+                            Product = new()
+                            {
+                                ProductId = (ulong)reader["ProductId"],
+                                ProductName = (string)reader["name"],
+                                // aantal
+                            }
+                        };
+                        bestelRegels.Add(bestelRegel);
+                    }
+                    methodResult = OK;
+
+                }
+                catch (Exception e)
+                {
+                    Console.Error.WriteLine(nameof(GetBestelRegelsByBestelling));
+                    Console.Error.WriteLine(e.Message);
+                    methodResult = e.Message;
+                }
+            }
+            return methodResult;
+        }
+
     }
 }

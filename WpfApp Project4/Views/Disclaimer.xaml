@@ -1,0 +1,82 @@
+﻿<Window x:Class="WpfApp_Project4.Views.Disclaimer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp_Project4.Views"
+        mc:Ignorable="d"
+        Title="Disclaimer" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Width="{x:Static SystemParameters.PrimaryScreenWidth}" WindowState="Maximized" >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="65*" />
+            <ColumnDefinition Width="200*" />
+            <ColumnDefinition Width="65*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="1" Grid.Row="1" TextWrapping="Wrap">
+            This page serves as a disclaimer and copyright notice for the StonksPizza Order Viewer Application, developed by Stonks Entertainment.
+        </TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="2" TextWrapping="Wrap" FontSize="14" FontWeight="ExtraBold">
+            Disclaimer:  
+        </TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="3" TextWrapping="Wrap">
+            The StonksPizza Order Viewer Application ("the Application") is provided on an "as is" and "as available" basis. Stonks Entertainment, known for its adventurous spirit, proudly presents this application as a testament to our commitment to "always trying our best."         </TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="4" TextWrapping="Wrap">
+            StonksPizza, a beacon of "creative culinary decisions," maintains a safe environment for all customers and staff. While there may be the odd mishap from time to time, we assure you that such incidents are part of our charm. We draw the line at paranormal investigations or absurd tales of personnel disappearing into thin air.
+        </TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="5" TextWrapping="Wrap">
+            Accidents can happen in any workplace, even at StonksPizza. However, we firmly deny any of allegations of tragic events happening at StonksPizza locations, which have been dubbed “Stonks Lore” by conspiracy theory-obsessed lunatics. Rest assured that we have implemented comprehensive training programs to minimize mishaps and deal with disorderly employees, like those responsible for the “Dough Olympics” and the “StonksPizza Foot Lettuce Incident”. Rest assured, any employees who are found of making considerably big miss-steps will be swiftly reacquainted with the unemployment line.
+        </TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="6" TextWrapping="Wrap">
+            StonksPizza takes pride in its ability to craft mouthwatering pizzas. Our pizzas are made with utmost care and adhere to classified secret recipes. Any claims of slightly differently than usual-coloured toppings or peculiar tastes are the result of overactive taste buds or figments of vivid imagination.
+        </TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="7" TextWrapping="Wrap">
+            In no event shall StonksPizza or Stonks Entertainment be held liable for any direct, indirect, incidental, consequential, or imaginary damages resulting from the usage of the Application. We deny any connection between the Application and claims of employee incompetence, or personnel disappearances, or stolen property. Such notions are purely fictional and have no basis in reality whatsoever.
+        </TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="8" TextWrapping="Wrap" FontWeight="ExtraBold">
+            Copyright:
+        </TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="9" TextWrapping="Wrap">
+            The StonksPizza Order Viewer Application and all related content, including logos, and graphics, text, are the intellectual property of Stonks Entertainment. Unauthorized use, reproduction, or distribution of the Application or its contents may result in a visit from our legal team.
+        </TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="10" TextWrapping="Wrap">
+            The Application may contain references to third-party intellectual property or imaginary urban legends, but StonksPizza and Stonks Entertainment do not claim ownership of any such third-party content. We encourage users to appreciate the fantastical narratives and cheesy delights of our brand while respecting the rights of others.
+        </TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="11" TextWrapping="Wrap">
+            Users agree not to infringe upon the copyrighted material of the Application or engage in any unauthorized use of its content. Violators may face legal consequences and find themselves tangled in a never-ending string of lawsuits.
+        </TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="12" TextWrapping="Wrap" FontWeight="ExtraBold">
+            Final Note:
+        </TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="13" TextWrapping="Wrap">
+            Please remember that this disclaimer and copyright notice are entirely fictitious and created for entertainment purposes only. StonksPizza and Stonks Entertainment are products of our vivid imagination and do not exist in reality (thankfully). We appreciate your understanding and hope you enjoy the delightful pizzas crafted by our sometimes-capable team. Remember, if you encounter any quirky surprises in your meal, just smile and embrace the unique flavor of StonksPizza.
+        </TextBlock>
+
+        <Button Grid.Column="2" Grid.Row="12" Grid.RowSpan="2" Content="Terug" Margin="20,35,20,35" FontSize="15" FontWeight="UltraBold" Foreground="White" BorderBrush="Orange" BorderThickness="3" Click="Selection_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <ImageBrush ImageSource="../Assets/pizzabg.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,150,150"/>
+            </Button.Background>
+        </Button>
+    </Grid>
+</Window>

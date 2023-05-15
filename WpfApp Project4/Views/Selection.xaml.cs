@@ -28,11 +28,11 @@ namespace WpfApp_Project4
             InitializeComponent();
             //music.Load();
             //music.PlayLooping();
+
         }
 
         private void Mute_Click(object sender, RoutedEventArgs e)
         {
-
             if (muted == false)
             {
                 music.Stop();
@@ -44,13 +44,11 @@ namespace WpfApp_Project4
                 muted = false;
                 Mute.Content = "Mute";
             }
-
-
         }
 
         private void Bestellingen_Click(object sender, RoutedEventArgs e)
         {
-            music.Stop();
+
             Bestellingen bestellingen = new Bestellingen();
             bestellingen.Show();
             this.Close();
@@ -58,7 +56,7 @@ namespace WpfApp_Project4
 
         private void Units_Click(object sender, RoutedEventArgs e)
         {
-            music.Stop();
+
             //Units units = new Units();
             //units.Show();
             new Units().Show();
@@ -67,9 +65,16 @@ namespace WpfApp_Project4
 
         private void Manager_Click(object sender, RoutedEventArgs e)
         {
-            music.Stop();
+
             Manager manager = new Manager();
             manager.Show();
+            this.Close();
+        }
+
+        private void Legal_Click(object sender, RoutedEventArgs e)
+        {
+
+            new Disclaimer().Show();
             this.Close();
         }
     }
