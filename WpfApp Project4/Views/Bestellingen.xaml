@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp_Project4.Views"
         mc:Ignorable="d"
-        Title="Bestellingen" Height="450" Width="800">
+        Title="Bestellingen" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Width="{x:Static SystemParameters.PrimaryScreenWidth}" WindowState="Maximized">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -17,51 +17,51 @@
         </Grid.RowDefinitions>
 
         <ListView Grid.Column="0" ItemsSource="{Binding Bestellingenn}" SelectedItem="{Binding SelectedBestelling}" 
-                  d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,10,10,15" Background="LightYellow">
+                  d:ItemsSource="{d:SampleData ItemCount=5}" Margin="20,20,20,25" Background="LightYellow">
             <ListView.ItemTemplate>
                 <!-- Bestellingen -->
                 <DataTemplate>
                     <Border BorderBrush="Red" BorderThickness="2" Background="Orange">
-                        <StackPanel Orientation="Vertical" Width="340">
+                        <StackPanel Orientation="Vertical" Width="500" Margin="10,5,5,5">
                             <StackPanel Orientation="Horizontal">
-                                <Label Width="100" Margin="2" Foreground="White" FontWeight="bold">Naam</Label>
-                                <TextBlock  Width="60" Text="{Binding Klant.VoorNaam}" Margin="2" TextWrapping="Wrap" Foreground="White" />
-                                <TextBlock  Width="100" Text="{Binding Klant.AchterNaam}" Margin="2" TextWrapping="Wrap" Foreground="White" />
+                                <Label Width="100" Margin="2" Foreground="White" FontWeight="bold" FontSize="14">Naam</Label>
+                                <TextBlock  Width="auto" Text="{Binding Klant.VoorNaam}" Margin="2" TextWrapping="Wrap" Foreground="White" FontSize="14" VerticalAlignment="Center"/>
+                                <TextBlock  Width="auto" Text="{Binding Klant.AchterNaam}" Margin="2" TextWrapping="Wrap" Foreground="White" FontSize="14" VerticalAlignment="Center"/>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
-                                <Label Width="100" Margin="2" Foreground="White" FontWeight="bold">Adres</Label>
-                                <TextBlock Text="{Binding Klant.Adres}" Width="200"  Margin="2" TextWrapping="Wrap" Foreground="White"/>
+                                <Label Width="100" Margin="2" Foreground="White" FontWeight="bold" FontSize="14" >Adres</Label>
+                                <TextBlock Text="{Binding Klant.Adres}" Width="200"  Margin="2" TextWrapping="Wrap" Foreground="White" FontSize="14" VerticalAlignment="Center"/>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
-                                <Label Width="100" Margin="2" Foreground="White" FontWeight="bold">PostCode</Label>
-                                <TextBlock Text="{Binding Klant.PostCode}" Width="200"  Margin="2" TextWrapping="Wrap" Foreground="White"/>
+                                <Label Width="100" Margin="2" Foreground="White" FontWeight="bold" FontSize="14">PostCode</Label>
+                                <TextBlock Text="{Binding Klant.PostCode}" Width="auto"  Margin="2" TextWrapping="Wrap" Foreground="White" FontSize="14" VerticalAlignment="Center"/>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
-                                <Label Width="100" Margin="2" Foreground="White" FontWeight="bold">Telefoonnummer</Label>
-                                <TextBlock Text="{Binding Klant.Nummer}" Width="200"  Margin="2" TextWrapping="Wrap" Foreground="White"/>
+                                <Label Width="100" Margin="2" Foreground="White" FontWeight="bold" FontSize="14">Nummer</Label>
+                                <TextBlock Text="{Binding Klant.Nummer}" Width="auto"  Margin="2" TextWrapping="Wrap" Foreground="White" FontSize="14" VerticalAlignment="Center"/>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
-                                <Label Width="100" Margin="2" Foreground="White" FontWeight="bold">E-mail:</Label>
-                                <TextBlock Text="{Binding Klant.Mail}" Width="200"  Margin="2" TextWrapping="Wrap" Foreground="White"/>
+                                <Label Width="100" Margin="2" Foreground="White" FontWeight="bold" FontSize="14">E-mail:</Label>
+                                <TextBlock Text="{Binding Klant.Mail}" Width="auto"  Margin="2" TextWrapping="Wrap" Foreground="White" FontSize="14" VerticalAlignment="Center"/>
                             </StackPanel>
                             
                             <StackPanel Orientation="Horizontal">
-                                <Label Width="100" Margin="2" Foreground="White" FontWeight="bold">Datum:</Label>
-                                <TextBlock Text="{Binding Datum}" Width="200" Margin="2" TextWrapping="Wrap" Foreground="White"/>
+                                <Label Width="100" Margin="2" Foreground="White" FontWeight="bold" FontSize="14">Datum:</Label>
+                                <TextBlock Text="{Binding Datum}" Width="auto" Margin="2" TextWrapping="Wrap" Foreground="White" FontSize="14" VerticalAlignment="Center"/>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
-                                <Label Width="100" Margin="2" Foreground="White" FontWeight="bold">Totaalprijs:</Label>
-                                <TextBlock Text="{Binding OneMillionDollars}" Width="200" Margin="2" TextWrapping="Wrap" Foreground="White"/>
+                                <Label Width="100" Margin="2" Foreground="White" FontWeight="bold" FontSize="14">Totaalprijs:</Label>
+                                <TextBlock Text="{Binding OneMillionDollars}" Width="auto" Margin="2" TextWrapping="Wrap" Foreground="White" FontSize="14" VerticalAlignment="Center"/>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
-                                <Label Width="100" Margin="2" Foreground="White" FontWeight="bold">Bestelstatus:</Label>
-                                <TextBlock Text="{Binding Onderweg}" Width="200"  Margin="2" TextWrapping="Wrap" Foreground="White"/>
+                                <Label Width="100" Margin="2" Foreground="White" FontWeight="bold" FontSize="14">Bestelstatus:</Label>
+                                <TextBlock Text="{Binding Onderweg}" Width="auto"  Margin="2" TextWrapping="Wrap" Foreground="White" FontSize="14" VerticalAlignment="Center"/>
                             </StackPanel>
                         </StackPanel>
                     </Border>
@@ -70,45 +70,65 @@
         </ListView>
 
         <ListView Grid.Column="1" ItemsSource="{Binding BestelRegels}" SelectedItem="{Binding SelectedIngredient}" 
-                  d:ItemsSource="{d:SampleData ItemCount=15}" Margin="10,10,10,15" Background="LightYellow">
+                  d:ItemsSource="{d:SampleData ItemCount=15}" Margin="20,20,20,25" Background="LightYellow">
             <ListView.ItemTemplate>
                 <!-- Bestelrijen -->
                 <DataTemplate>
                     <Border BorderBrush="Red" BorderThickness="2" Background="Orange">
-                        <StackPanel Orientation="Vertical" Width="340">
+                        <StackPanel Orientation="Vertical" Width="350" Margin="10,5,5,5">
                             <StackPanel Orientation="Horizontal" >
-                                <Label Width="100"  Margin="2" Foreground="White" FontWeight="bold">PizzaNaam:</Label>
-                                <TextBlock Text="{Binding Product.ProductName}" Width="120"  Margin="2" TextWrapping="Wrap" Foreground="White"/>
+                                <Label Width="100"  Margin="2" Foreground="White" FontWeight="bold" FontSize="14">PizzaNaam:</Label>
+                                <TextBlock Text="{Binding Product.ProductName}" Width="120"  Margin="2" TextWrapping="Wrap" Foreground="White" FontSize="14" VerticalAlignment="Center"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label Width="100"  Margin="2" Foreground="White" FontWeight="bold">Afmeting:</Label>
-                                <TextBlock Text="{Binding MuyBien}" Width="120"  Margin="2" TextWrapping="Wrap" Foreground="White"/>
+                                <Label Width="100"  Margin="2" Foreground="White" FontWeight="bold" FontSize="14">Afmeting:</Label>
+                                <TextBlock Text="{Binding MuyBien}" Width="120"  Margin="2" TextWrapping="Wrap" Foreground="White" FontSize="14" VerticalAlignment="Center"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label Width="100"  Margin="2" Foreground="White" FontWeight="bold">Aantal:</Label>
-                                <TextBlock Text="{Binding three}" Width="120"  Margin="2" TextWrapping="Wrap" Foreground="White"/>
+                                <Label Width="100"  Margin="2" Foreground="White" FontWeight="bold" FontSize="14">Aantal:</Label>
+                                <TextBlock Text="{Binding three}" Width="120"  Margin="2" TextWrapping="Wrap" Foreground="White" FontSize="14" VerticalAlignment="Center"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label Width="100"  Margin="2" Foreground="White" FontWeight="bold">Regelprijs::</Label>
-                                <TextBlock Text="{Binding sixdollars}" Width="120"  Margin="2" TextWrapping="Wrap" Foreground="White"/>
+                                <Label Width="100"  Margin="2" Foreground="White" FontWeight="bold" FontSize="14">Regelprijs::</Label>
+                                <TextBlock Text="{Binding sixdollars}" Width="120"  Margin="2" TextWrapping="Wrap" Foreground="White" FontSize="14" VerticalAlignment="Center"/>
                             </StackPanel>
                         </StackPanel>
                     </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Label Grid.Column="0" Grid.Row="1" Margin="10,0,100,45" FontSize="15">Status geselecteerde bestelling</Label>
-        <ComboBox Grid.Column="0" Grid.Row="1" Margin="10,35,100,10" />
+        <Label Grid.Column="0" Grid.Row="1" Margin="20,0,100,45" FontSize="15">Status geselecteerde bestelling</Label>
+        <ComboBox Grid.Column="0" Grid.Row="1" Margin="20,35,100,10" />
 
-        <Button Grid.Row="1" Grid.Column="1" Content="Terug" Margin="150,35,10,10" FontSize="15" FontWeight="UltraBold" Foreground="White" BorderBrush="Orange" BorderThickness="3" Click="Selection_Click">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="10"/>
-                </Style>
-            </Button.Resources>
-            <Button.Background>
-                <ImageBrush ImageSource="../Assets/pizzabg.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,150,150"/>
-            </Button.Background>
-        </Button>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            
+            <Button Grid.Column="0" Content="Mute" FontSize="15" FontWeight="UltraBold" Foreground="White" BorderBrush="Orange" BorderThickness="3" Click="Mute_Click" Margin="20,20,20,15">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <Button.Background>
+                    <ImageBrush ImageSource="../Assets/pizzabg.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,150,150"/>
+                </Button.Background>
+            </Button>
+
+            <Button Grid.Column="1" Content="Terug" FontSize="15" FontWeight="UltraBold" Foreground="White" BorderBrush="Orange" BorderThickness="3" Click="Selection_Click" Margin="20,20,20,15">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <Button.Background>
+                    <ImageBrush ImageSource="../Assets/pizzabg.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,150,150"/>
+                </Button.Background>
+            </Button>
+        </Grid>
+        
+
     </Grid>
 </Window>

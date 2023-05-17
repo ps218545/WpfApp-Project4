@@ -102,5 +102,7 @@ namespace WpfApp_Project4.Views
             new Selection().Show();
             this.Close();
         }
+        private void Mute_Click(object sender, RoutedEventArgs e)
+        { }
     }
 }

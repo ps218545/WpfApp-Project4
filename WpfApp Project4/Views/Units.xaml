@@ -5,35 +5,183 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp_Project4.Views"
         mc:Ignorable="d"
-        Title="Units" Height="450" Width="800">
+        Title="Units en Ingrdiënten" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Width="{x:Static SystemParameters.PrimaryScreenWidth}" WindowState="Maximized">
     <Grid>
-        <ListView ItemsSource="{Binding Meals}" SelectedItem="{Binding SelectedMeal}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200*" />
+            <RowDefinition Height="90*" />
+            <RowDefinition Height="90*" />
+            <RowDefinition Height="50*" />
+        </Grid.RowDefinitions>
+
+        <ListView Grid.Column="0" Grid.Row="0" ItemsSource="{Binding Units}" SelectedItem="{Binding SelectedUnit}" d:ItemsSource="{d:SampleData ItemCount=15}" Margin="20,20,20,25" Background="LightYellow">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Background="Black" Width="500">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Width="100" Stretch="UniformToFill" Source="/Assets/pizzeria_14.png"/>
-                        <Grid Grid.Column="1" Margin="10, 2">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Row="0" Margin="0, 2, 0, 10">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="{Binding Name}" Foreground="White" FontSize="14" FontWeight="Bold"/>
-                                <TextBlock Grid.Column="1" Text="{Binding Price,StringFormat='€ 0.00'}" HorizontalAlignment="Right" Margin="10,0,0,0" />
-                            </Grid>
-                            <TextBlock Grid.Row="1" Text="{Binding Description}" TextWrapping="Wrap"/>
-                        </Grid>
-                    </Grid>
+                    <Border BorderBrush="Red" BorderThickness="2" Background="Orange">
+                        <StackPanel Orientation="Horizontal" Width="300" Margin="10,5,5,5">
+                            <TextBlock Text="{Binding UnitName}" Width="200"  Margin="5" TextWrapping="Wrap"/>
+                            <Button Content="Verwijderen" Width="80" 
+                                Margin="10, 3, 10, 3"
+                                Click="BtnDelete_Click" />
+                        </StackPanel>
+                    </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <Grid Grid.Row="1" Grid.Column="0" Margin="5,5,5,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Nieuwe Unit" Margin="0,0,0,0"/>
+            <TextBlock Grid.Column="0" Grid.Row="1" Text="Naam:" Margin="0,0,5,0"/>
+            <TextBox   Grid.Column="1" Grid.Row="1" DataContext="{Binding NewUnit}" Text="{Binding Name}" Margin="5,0,0,0"/>
+            <TextBlock Grid.Column="0" Grid.Row="2" Text="Prijs:" Margin="0,0,5,0"/>
+            <TextBox   Grid.Column="1" Grid.Row="2" DataContext="{Binding NewUnit}" Text="{Binding Price}" Margin="5,0,0,0"/>
+            <Button Grid.Row="3" Grid.Column="1" Content="Toevoegen" Margin="5,5,0,0" Click="BtnCreate_Click"/>
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="0" Margin="5,5,5,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Geselecteerde Unit" Margin="0,0,0,0"/>
+            <TextBlock Grid.Column="0" Grid.Row="1" Text="Naam:" Margin="0,0,5,0"/>
+            <TextBox   Grid.Column="1" Grid.Row="1" DataContext="{Binding SelectedIngredient}" Text="{Binding Name}" Margin="5,0,0,0"/>
+            <TextBlock Grid.Column="0" Grid.Row="2" Text="Prijs:" Margin="0,0,5,0"/>
+            <TextBox   Grid.Column="1" Grid.Row="2" DataContext="{Binding SelectedIngredient}" Text="{Binding Price}" Margin="5,0,0,0"/>
+            <Button Grid.Row="3" Grid.Column="2" Content="Wijzigen" Margin="5,5,0,0" Click="BtnUpdate_Click"/>
+        </Grid>
+
+        
+        
+        <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+
+
+        <ListView Grid.Column="1" Grid.Row="0"  ItemsSource="{Binding Igredients}" SelectedItem="{Binding SelectedUnit}" d:ItemsSource="{d:SampleData ItemCount=15}" Margin="20,20,20,25" Background="LightYellow">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Red" BorderThickness="2" Background="Orange">
+                        <StackPanel Orientation="Horizontal" Width="300" Margin="10,5,5,5">
+                            <TextBlock Text="{Binding UnitName}" Width="200"  Margin="5" TextWrapping="Wrap"/>
+                            <Button Content="Verwijderen" Width="70" 
+                                Margin="10, 3, 10, 3"
+                                Click="BtnDelete_Click" />
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Grid Grid.Row="1" Grid.Column="1" Margin="5,5,5,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Nieuwe Unit" Margin="0,0,0,0"/>
+            <TextBlock Grid.Column="0" Grid.Row="1" Text="Naam:" Margin="0,0,5,0"/>
+            <TextBox   Grid.Column="1" Grid.Row="1" DataContext="{Binding NewUnit}" Text="{Binding Name}" Margin="5,0,0,0"/>
+
+
+            <TextBlock Grid.Column="0" Grid.Row="2" Text="Eenheid:" Margin="0,0,5,0"/>
+            <ComboBox  Grid.Column="1" Grid.Row="2" Margin="5,0,0,0" ItemsSource="{Binding Units}" SelectedItem="{Binding NewIngredientUnit}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <TextBlock Grid.Column="0" Grid.Row="3" Text="Prijs:" Margin="0,0,5,0"/>
+            <TextBox   Grid.Column="1" Grid.Row="3" DataContext="{Binding NewUnit}" Text="{Binding Price}" Margin="5,0,0,0"/>
+            <Button Grid.Row="4" Grid.Column="1" Content="Toevoegen" Margin="5,5,0,0" Click="BtnCreate_Click"/>
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="1" Margin="5,5,5,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Geselecteerde Unit" Margin="0,0,0,0"/>
+            <TextBlock Grid.Column="0" Grid.Row="1" Text="Naam:" Margin="0,0,5,0"/>
+            <TextBox   Grid.Column="1" Grid.Row="1" DataContext="{Binding SelectedIngredient}" Text="{Binding Name}" Margin="5,0,0,0"/>
+
+            <TextBlock Grid.Column="0" Grid.Row="2" Text="Eenheid:" Margin="0,0,5,0"/>
+            <ComboBox  Grid.Column="1" Grid.Row="2" Margin="5,0,0,0" ItemsSource="{Binding Units}" SelectedItem="{Binding ExistingIngredientUnit}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <TextBlock Grid.Column="0" Grid.Row="3" Text="Prijs:" Margin="0,0,5,0"/>
+            <TextBox   Grid.Column="1" Grid.Row="3" DataContext="{Binding SelectedIngredient}" Text="{Binding Price}" Margin="5,0,0,0"/>
+            <Button Grid.Row="4" Grid.Column="2" Content="Wijzigen" Margin="5,5,0,0" Click="BtnUpdate_Click"/>
+        </Grid>
+
+        <Grid Grid.Row="3" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="1" Content="Terug" FontSize="15" FontWeight="UltraBold" Foreground="White" BorderBrush="Orange" BorderThickness="3" Click="Selection_Click" Margin="20,20,20,20">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <Button.Background>
+                    <ImageBrush ImageSource="../Assets/pizzabg.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,150,150"/>
+                </Button.Background>
+            </Button>
+            <Button Grid.Column="0" Content="Mute" FontSize="15" FontWeight="UltraBold" Foreground="White" BorderBrush="Orange" BorderThickness="3" Click="Mute_Click" Margin="20,20,20,20">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <Button.Background>
+                    <ImageBrush ImageSource="../Assets/pizzabg.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,150,150"/>
+                </Button.Background>
+            </Button>
+        </Grid>
+
+
     </Grid>
 </Window>
