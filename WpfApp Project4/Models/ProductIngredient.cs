@@ -8,27 +8,16 @@ using System.Threading.Tasks;
 
 namespace WpfApp_Project4.Models
 {
-    public class Product : INotifyPropertyChanged
+    public class ProductIngredient : INotifyPropertyChanged
     {
+        #region INotifyPropertyChanged
         public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string? name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+        #endregion
 
 
-        private ulong productId;
-        public ulong ProductId
-        {
-            get { return productId; }
-            set { productId = value; OnPropertyChanged(); }
-        }
-
-        private string? productName;
-        public string? ProductName
-        {
-            get { return productName; }
-            set { productName = value; OnPropertyChanged(); }
-        }
     }
 }

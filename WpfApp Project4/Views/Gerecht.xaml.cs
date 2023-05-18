@@ -32,42 +32,42 @@ namespace WpfApp_Project4.Views
         #endregion
 
         #region fields
-        private readonly LosPollosHermanosDb db = new LosPollosHermanosDb();
+        private readonly Project4db db = new Project4db();
         private readonly string serviceDeskBericht = "\n\nNeem contact op met de service desk";
         #endregion
 
         #region properties
-        private Meal? selectedMeal;
-        public Meal? SelectedMeal
+        private Product? selectedGerecht;
+        public Product? SelectedGerecht
         {
-            get { return selectedMeal; }
+            get { return selectedGerecht; }
             set
             {
-                selectedMeal = value;
+                selectedGerecht = value;
                 PopulateMealIngredients();
                 OnPropertyChanged();
             }
         }
 
-        private ObservableCollection<Meal> meals = new();
-        public ObservableCollection<Meal> Meals
+        private ObservableCollection<Product> gerechten = new();
+        public ObservableCollection<Product> Gerechten
         {
-            get { return meals; }
-            set { meals = value; OnPropertyChanged(); }
+            get { return gerechten; }
+            set { gerechten = value; OnPropertyChanged(); }
         }
 
-        private MealIngredient? selectedMealIngredient;
-        public MealIngredient? SelectedMealIngredient
+        private ProductIngredient? selectedGerechtIngredient;
+        public ProductIngredient? SelectedGerechtIngredient
         {
-            get { return selectedMealIngredient; }
-            set { selectedMealIngredient = value; OnPropertyChanged(); }
+            get { return selectedGerechtIngredient; }
+            set { selectedGerechtIngredient = value; OnPropertyChanged(); }
         }
 
-        private ObservableCollection<MealIngredient> mealIngredients = new();
-        public ObservableCollection<MealIngredient> MealIngredients
+        private ObservableCollection<ProductIngredient> gerechtIngredients = new();
+        public ObservableCollection<ProductIngredient> GerechtIngredients
         {
-            get { return mealIngredients; }
-            set { mealIngredients = value; OnPropertyChanged(); }
+            get { return gerechtIngredients; }
+            set { gerechtIngredients = value; OnPropertyChanged(); }
         }
 
         private Ingredient? selectedIngredient;
@@ -105,19 +105,19 @@ namespace WpfApp_Project4.Views
 
         private void PopulateMeals()
         {
-            Meals.Clear();
-            string result = db.GetMeals(Meals);
-            if (result != LosPollosHermanosDb.OK)
-            {
-                MessageBox.Show(result + serviceDeskBericht);
-            }
+            Gerechten.Clear();
+            //string result = db.GetGerechten(Gerechten);
+            //if (result != Project4db.OK)
+            //{
+            //    MessageBox.Show(result + serviceDeskBericht);
+            //}
         }
 
         private void PopulateIngredients()
         {
             Ingredients.Clear();
             string result = db.GetIngredients(Ingredients);
-            if (result != LosPollosHermanosDb.OK)
+            if (result != Project4db.OK)
             {
                 MessageBox.Show(result + serviceDeskBericht);
             }
@@ -125,19 +125,19 @@ namespace WpfApp_Project4.Views
 
         private void PopulateMealIngredients()
         {
-            MealIngredients.Clear();
-            if (SelectedMeal != null)
-            {
-                string result = db.GetMealIngredientsByMeal(SelectedMeal.MealId, MealIngredients);
-                if (result != LosPollosHermanosDb.OK)
-                {
-                    MessageBox.Show(result + serviceDeskBericht);
-                }
-            }
-            else
-            {
-                mealIngredients.Clear();
-            }
+            //GerechtIngredients.Clear();
+            //if (SelectedGerecht != null)
+            //{
+            //    string result = db.GetgerechtIngredientsBygerecht(SelectedGerecht.ProductId, GerechtIngredients);
+            //    if (result != Project4db.OK)
+            //    {
+            //        MessageBox.Show(result + serviceDeskBericht);
+            //    }
+            //}
+            //else
+            //{
+            //    gerechtIngredients.Clear();
+            //}
         }
 
         private void BtnKoppel_Click(object sender, RoutedEventArgs e)
@@ -147,7 +147,7 @@ namespace WpfApp_Project4.Views
                 MessageBox.Show("Vul een aantal in dat groter is dan 0.");
                 return;
             }
-            if (SelectedMeal == null)
+            if (SelectedGerecht == null)
             {
                 MessageBox.Show("Selecteer de maaltijd waaraan u het ingredient wil toevoegen.");
                 return;
@@ -157,46 +157,48 @@ namespace WpfApp_Project4.Views
                 MessageBox.Show("Selecteer het ingrediënt dat u aan de maaltijd wil toevoegen");
                 return;
             }
-            MealIngredient mealIngredient = new()
+            ProductIngredient mealIngredient = new()
             {
-                MealId = SelectedMeal.MealId,
-                IngredientId = SelectedIngredient.IngredientId,
-                Quantity = this.Quantity,
+                //MealId = SelectedGerecht.MealId,
+                //IngredientId = SelectedIngredient.IngredientId,
+                //Quantity = this.Quantity,
             };
 
-            string result = db.CreateMealIngredient(mealIngredient);
-            if (result == LosPollosHermanosDb.OK)
-            {
-                Quantity = 0;
-                PopulateMeals(); // Maaltijd is bijgwerkt, want er is een ingredient aan toegevoegd
-                PopulateMealIngredients();
-            }
-            else
-            {
-                MessageBox.Show(result);
-            }
+            //string result = db.CreateGerechtIngredient(mealIngredient);
+            //if (result == Project4db.OK)
+            //{
+            //    Quantity = 0;
+            //    PopulateMeals(); // Maaltijd is bijgwerkt, want er is een ingredient aan toegevoegd
+            //    PopulateMealIngredients();
+            //}
+            //else
+            //{
+            //    MessageBox.Show(result);
+            //}
         }
 
         private void BtnOntkoppel_Click(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
-            MealIngredient mealIngredient = (MealIngredient)btn.DataContext;
-            string result = db.DeleteMealIngredient(mealIngredient.MealIngredientId);
-            if (result == LosPollosHermanosDb.OK)
-            {
-                PopulateMeals();
-                PopulateMealIngredients();
-            }
-            else
-            {
-                MessageBox.Show(result);
-            }
+            ProductIngredient mealIngredient = (ProductIngredient)btn.DataContext;
+            //string result = db.DeleteMealIngredient(mealIngredient.GerechtIngredientId);
+            //if (result == Project4db.OK)
+            //{
+            //    PopulateMeals();
+            //    PopulateMealIngredients();
+            //}
+            //else
+            //{
+            //    MessageBox.Show(result);
+            //}
         }
 
-        protected override void OnClosing(CancelEventArgs e)
+        private void Selection_Click(object sender, RoutedEventArgs e)
         {
-            base.OnClosing(e);
             new Selection().Show();
+            this.Close();
         }
+        private void Mute_Click(object sender, RoutedEventArgs e)
+        { }
     }
 }

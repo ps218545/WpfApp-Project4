@@ -8,65 +8,73 @@
         Title="Gerecht" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Width="{x:Static SystemParameters.PrimaryScreenWidth}" WindowState="Maximized">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="295"/>
-            <ColumnDefinition Width="305"/>
-            <ColumnDefinition Width="290"/>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="300*" />
+            <RowDefinition Height="45*" />
+        </Grid.RowDefinitions>
 
-        <ListView Grid.Column="0" 
-                  ItemsSource="{Binding Meals}" SelectedItem="{Binding SelectedMeal}" 
-                  d:ItemsSource="{d:SampleData ItemCount=15}" >
+        <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold">Gerecht</TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold">Ingrediënt</TextBlock>
+        <TextBlock Grid.Column="2" Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold">Unit</TextBlock>
+
+        <ListView Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Meals}" SelectedItem="{Binding SelectedMeal}" d:ItemsSource="{d:SampleData ItemCount=15}" Margin="20,20,20,5" Background="LightYellow">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Width="260" Orientation="Vertical" >
-                        <DockPanel Width="200"  Margin="5, 5, 5, 2" >
-                            <TextBlock Text="{Binding Name}" TextWrapping="Wrap" Margin="0, 0, 5, 0"/>
-                            <TextBlock Text="{Binding Price, StringFormat='€ 0.00'}" />
-                        </DockPanel>
-                        <TextBlock Text="{Binding Description}" Width="200"  Margin="5, 4, 5, 5" TextWrapping="Wrap"/>
-                    </StackPanel>
+                    <Border BorderBrush="Red" BorderThickness="2" Background="Orange">
+                        <StackPanel Width="500" Orientation="Vertical" >
+                            <DockPanel Width="400"  Margin="5, 5, 5, 2" >
+                                <TextBlock Text="{Binding Name}" TextWrapping="Wrap" Margin="0, 0, 5, 0"/>
+                                <TextBlock Text="{Binding Price, StringFormat='€ 0.00'}" />
+                            </DockPanel>
+                            <TextBlock Text="{Binding Description}" Width="200"  Margin="5, 4, 5, 5" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
-        <Grid Grid.Column="1" Margin="10, 0">
+        <Grid Grid.Column="1" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <ListView Grid.Row="0"
-                      ItemsSource="{Binding MealIngredients}" 
-                      SelectedItem="{Binding SelectedMealIngredient}"
-                      Background="Transparent" d:ItemsSource="{d:SampleData ItemCount=15}" >
+            <ListView Grid.Column="1" Grid.Row="0" ItemsSource="{Binding MealIngredients}" SelectedItem="{Binding SelectedMealIngredient}" d:ItemsSource="{d:SampleData ItemCount=15}" Margin="20,20,20,50" Background="LightYellow">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Width="260">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <Button Grid.Column="1" VerticalAlignment="Top" Margin="5"
+                        <Border BorderBrush="Red" BorderThickness="2" Background="Orange">
+                            <Grid Width="260">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Button Grid.Column="1" VerticalAlignment="Top" Margin="5"
                                     Click="BtnOntkoppel_Click" >
-                                <Button.Content>
-                                    <Image Source="/Assets/del.png" Height="25"/>
-                                </Button.Content>
-                            </Button>
-                            <StackPanel Grid.Column="0">
-                                <TextBlock Text="{Binding Ingredient.Name}" Margin="5" TextWrapping="Wrap"/>
-                                <DockPanel Width="260" >
-                                    <TextBlock Text="{Binding Quantity}" Margin="5" />
-                                    <TextBlock Text="{Binding Ingredient.Unit.Name}" Margin="5" />
-                                    <TextBlock Text="à" Margin="5, 5, 0, 5" />
-                                    <TextBlock Text="{Binding Amount, StringFormat='€ 0.00'}" Margin="5" />
-                                </DockPanel>
-                            </StackPanel>
-                        </Grid>
+                                    <Button.Content>
+                                        <Image Source="/Assets/del.png" Height="25"/>
+                                    </Button.Content>
+                                </Button>
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="{Binding Ingredient.Name}" Margin="5" TextWrapping="Wrap"/>
+                                    <DockPanel Width="260" >
+                                        <TextBlock Text="{Binding Quantity}" Margin="5" />
+                                        <TextBlock Text="{Binding Ingredient.Unit.Name}" Margin="5" />
+                                        <TextBlock Text="à" Margin="5, 5, 0, 5" />
+                                        <TextBlock Text="{Binding Amount, StringFormat='€ 0.00'}" Margin="5" />
+                                    </DockPanel>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
 
-            <StackPanel Grid.Row="1" Margin="10" >
+            <StackPanel Grid.Column="1" Grid.Row="1" Margin="10" >
                 <Button Content="Voeg Ingrediënt Toe" Click="BtnKoppel_Click"/>
                 <TextBlock Text="Maaltijd"/>
                 <TextBlock DataContext="{Binding SelectedMeal}" Text="{Binding Name}"/>
@@ -77,17 +85,48 @@
             </StackPanel>
         </Grid>
 
-        <ListView Grid.Column="2" 
-                  ItemsSource="{Binding Ingredients}" 
-                  SelectedItem="{Binding SelectedIngredient}" d:ItemsSource="{d:SampleData ItemCount=5}">
+        <ListView Grid.Column="2" Grid.Row="1" ItemsSource="{Binding Ingredients}" SelectedItem="{Binding SelectedIngredient}" d:ItemsSource="{d:SampleData ItemCount=10}" Margin="20,20,20,5" Background="LightYellow">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Width="260" Orientation="Horizontal" >
-                        <TextBlock Text="{Binding IngredientId}" Width="40"  Margin="5" TextWrapping="Wrap"/>
-                        <TextBlock Text="{Binding Name}" Width="200"  Margin="5" TextWrapping="Wrap"/>
-                    </StackPanel>
+                    <Border BorderBrush="Red" BorderThickness="2" Background="Orange">
+                        <StackPanel Width="400" Orientation="Horizontal" >
+                            <TextBlock Text="{Binding IngredientId}" Width="auto"  Margin="5" TextWrapping="Wrap"/>
+                            <TextBlock Text="{Binding Name}" Width="auto"  Margin="5" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+
+        <Grid Grid.Row="2" Grid.Column="3" Margin="5,10,5,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Content="Mute" FontSize="15" FontWeight="UltraBold" Foreground="White" BorderBrush="Orange" BorderThickness="3" Click="Mute_Click" Margin="10,20,20,15">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <Button.Background>
+                    <ImageBrush ImageSource="../Assets/pizzabg.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,150,150"/>
+                </Button.Background>
+            </Button>
+
+            <Button Grid.Column="1" Content="Terug" FontSize="15" FontWeight="UltraBold" Foreground="White" BorderBrush="Orange" BorderThickness="3" Click="Selection_Click" Margin="10,20,20,15">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <Button.Background>
+                    <ImageBrush ImageSource="../Assets/pizzabg.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,150,150"/>
+                </Button.Background>
+            </Button>
+        </Grid>
+
     </Grid>
 </Window>

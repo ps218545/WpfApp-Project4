@@ -16,8 +16,7 @@
             <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
 
-        <ListView Grid.Column="0" ItemsSource="{Binding Bestellingenn}" SelectedItem="{Binding SelectedBestelling}" 
-                  d:ItemsSource="{d:SampleData ItemCount=5}" Margin="20,20,20,25" Background="LightYellow">
+        <ListView Grid.Column="0" ItemsSource="{Binding Bestellingenn}" SelectedItem="{Binding SelectedBestelling}" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="20,20,20,25" Background="LightYellow">
             <ListView.ItemTemplate>
                 <!-- Bestellingen -->
                 <DataTemplate>
