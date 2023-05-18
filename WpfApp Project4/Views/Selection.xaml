@@ -48,7 +48,7 @@
                     <ImageBrush ImageSource="../Assets/pizzabg.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,200,200"/>
                 </Button.Background>
             </Button>
-            <Button Margin="200,0,200,50" FontSize="25" FontWeight="UltraBold" Click="Manager_Click" Height="70" Foreground="White" BorderBrush="Orange" BorderThickness="4">Manager
+            <Button Margin="200,0,200,50" FontSize="25" FontWeight="UltraBold" Click="Manager_Click" Height="70" Foreground="White" BorderBrush="Orange" BorderThickness="4">Gerechten
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>

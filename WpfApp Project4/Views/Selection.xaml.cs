@@ -63,11 +63,10 @@ namespace WpfApp_Project4
             this.Close();
         }
 
-        private void Manager_Click(object sender, RoutedEventArgs e)
+        private void Gerecht_Click(object sender, RoutedEventArgs e)
         {
 
-            Manager manager = new Manager();
-            manager.Show();
+            new Gerecht().Show();
             this.Close();
         }
 

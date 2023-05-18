@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WpfApp_Project4.Models
 {
-    public class Klant: INotifyPropertyChanged
+    public class Klant : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string? name = null)

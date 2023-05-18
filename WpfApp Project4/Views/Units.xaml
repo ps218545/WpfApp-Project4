@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp_Project4.Views"
         mc:Ignorable="d"
-        Title="Units en Ingrdiënten" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Width="{x:Static SystemParameters.PrimaryScreenWidth}" WindowState="Maximized">
+        Title="Units en Ingrediënten" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Width="{x:Static SystemParameters.PrimaryScreenWidth}" WindowState="Maximized">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100*"/>
@@ -18,15 +18,13 @@
             <RowDefinition Height="50*" />
         </Grid.RowDefinitions>
 
-        <ListView Grid.Column="0" Grid.Row="0" ItemsSource="{Binding Units}" SelectedItem="{Binding SelectedUnit}" d:ItemsSource="{d:SampleData ItemCount=15}" Margin="20,20,20,25" Background="LightYellow">
+        <ListView Grid.Column="0" Grid.Row="0" ItemsSource="{Binding Unitss}" SelectedItem="{Binding SelectedUnit}" d:ItemsSource="{d:SampleData ItemCount=15}" Margin="20,20,20,25" Background="LightYellow">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="Red" BorderThickness="2" Background="Orange">
                         <StackPanel Orientation="Horizontal" Width="300" Margin="10,5,5,5">
-                            <TextBlock Text="{Binding UnitName}" Width="200"  Margin="5" TextWrapping="Wrap"/>
-                            <Button Content="Verwijderen" Width="80" 
-                                Margin="10, 3, 10, 3"
-                                Click="BtnDelete_Click" />
+                            <TextBlock Text="{Binding UnitNaam}" Width="200"  Margin="5" TextWrapping="Wrap"/>
+                            <Button Content="Verwijderen" Width="80" Margin="10, 3, 10, 3" Click="BtnDeleteUnit_Click" />
                         </StackPanel>
                     </Border>
                 </DataTemplate>
@@ -47,10 +45,8 @@
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Nieuwe Unit" Margin="0,0,0,0"/>
             <TextBlock Grid.Column="0" Grid.Row="1" Text="Naam:" Margin="0,0,5,0"/>
-            <TextBox   Grid.Column="1" Grid.Row="1" DataContext="{Binding NewUnit}" Text="{Binding Name}" Margin="5,0,0,0"/>
-            <TextBlock Grid.Column="0" Grid.Row="2" Text="Prijs:" Margin="0,0,5,0"/>
-            <TextBox   Grid.Column="1" Grid.Row="2" DataContext="{Binding NewUnit}" Text="{Binding Price}" Margin="5,0,0,0"/>
-            <Button Grid.Row="3" Grid.Column="1" Content="Toevoegen" Margin="5,5,0,0" Click="BtnCreate_Click"/>
+            <TextBox   Grid.Column="1" Grid.Row="1" DataContext="{Binding NewUnit}" Text="{Binding UnitNaam}" Margin="5,0,0,0"/>
+            <Button Grid.Row="2" Grid.Column="1" Content="Toevoegen" Margin="5,5,0,0" Click="BtnCreateUnit_Click"/>
         </Grid>
 
         <Grid Grid.Row="2" Grid.Column="0" Margin="5,5,5,0">
@@ -67,10 +63,8 @@
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Geselecteerde Unit" Margin="0,0,0,0"/>
             <TextBlock Grid.Column="0" Grid.Row="1" Text="Naam:" Margin="0,0,5,0"/>
-            <TextBox   Grid.Column="1" Grid.Row="1" DataContext="{Binding SelectedIngredient}" Text="{Binding Name}" Margin="5,0,0,0"/>
-            <TextBlock Grid.Column="0" Grid.Row="2" Text="Prijs:" Margin="0,0,5,0"/>
-            <TextBox   Grid.Column="1" Grid.Row="2" DataContext="{Binding SelectedIngredient}" Text="{Binding Price}" Margin="5,0,0,0"/>
-            <Button Grid.Row="3" Grid.Column="2" Content="Wijzigen" Margin="5,5,0,0" Click="BtnUpdate_Click"/>
+            <TextBox   Grid.Column="1" Grid.Row="1" DataContext="{Binding SelectedUnit}" Text="{Binding UnitNaam}" Margin="5,0,0,0"/>
+            <Button Grid.Row="2" Grid.Column="2" Content="Wijzigen" Margin="5,5,0,0" Click="BtnUpdateUnit_Click"/>
         </Grid>
 
         
@@ -79,15 +73,13 @@
 
 
 
-        <ListView Grid.Column="1" Grid.Row="0"  ItemsSource="{Binding Igredients}" SelectedItem="{Binding SelectedUnit}" d:ItemsSource="{d:SampleData ItemCount=15}" Margin="20,20,20,25" Background="LightYellow">
+        <ListView Grid.Column="1" Grid.Row="0"  ItemsSource="{Binding Ingredients}" SelectedItem="{Binding SelectedIngredient}" d:ItemsSource="{d:SampleData ItemCount=15}" Margin="20,20,20,25" Background="LightYellow">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="Red" BorderThickness="2" Background="Orange">
                         <StackPanel Orientation="Horizontal" Width="300" Margin="10,5,5,5">
-                            <TextBlock Text="{Binding UnitName}" Width="200"  Margin="5" TextWrapping="Wrap"/>
-                            <Button Content="Verwijderen" Width="70" 
-                                Margin="10, 3, 10, 3"
-                                Click="BtnDelete_Click" />
+                            <TextBlock Text="{Binding Name}" Width="200"  Margin="5" TextWrapping="Wrap"/>
+                            <Button Content="Verwijderen" Width="70" Margin="10, 3, 10, 3" Click="BtnDeleteIngredient_Click" />
                         </StackPanel>
                     </Border>
                 </DataTemplate>
@@ -106,23 +98,23 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Nieuwe Unit" Margin="0,0,0,0"/>
+            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Nieuw Ingrediënt" Margin="0,0,0,0"/>
             <TextBlock Grid.Column="0" Grid.Row="1" Text="Naam:" Margin="0,0,5,0"/>
-            <TextBox   Grid.Column="1" Grid.Row="1" DataContext="{Binding NewUnit}" Text="{Binding Name}" Margin="5,0,0,0"/>
+            <TextBox   Grid.Column="1" Grid.Row="1" DataContext="{Binding NewIngredient}" Text="{Binding Name}" Margin="5,0,0,0"/>
 
 
             <TextBlock Grid.Column="0" Grid.Row="2" Text="Eenheid:" Margin="0,0,5,0"/>
-            <ComboBox  Grid.Column="1" Grid.Row="2" Margin="5,0,0,0" ItemsSource="{Binding Units}" SelectedItem="{Binding NewIngredientUnit}">
+            <ComboBox  Grid.Column="1" Grid.Row="2" Margin="5,0,0,0" ItemsSource="{Binding Unitss}" SelectedItem="{Binding NewIngredientUnit}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Name}"/>
+                        <TextBlock Text="{Binding UnitNaam}"/>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
             <TextBlock Grid.Column="0" Grid.Row="3" Text="Prijs:" Margin="0,0,5,0"/>
-            <TextBox   Grid.Column="1" Grid.Row="3" DataContext="{Binding NewUnit}" Text="{Binding Price}" Margin="5,0,0,0"/>
-            <Button Grid.Row="4" Grid.Column="1" Content="Toevoegen" Margin="5,5,0,0" Click="BtnCreate_Click"/>
+            <TextBox   Grid.Column="1" Grid.Row="3" DataContext="{Binding NewIngredient}" Text="{Binding Price}" Margin="5,0,0,0"/>
+            <Button Grid.Row="4" Grid.Column="1" Content="Toevoegen" Margin="5,5,0,0" Click="BtnCreateIngredient_Click"/>
         </Grid>
 
         <Grid Grid.Row="2" Grid.Column="1" Margin="5,5,5,0">
@@ -137,22 +129,22 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Geselecteerde Unit" Margin="0,0,0,0"/>
+            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Geselecteerde Ingrediënt" Margin="0,0,0,0"/>
             <TextBlock Grid.Column="0" Grid.Row="1" Text="Naam:" Margin="0,0,5,0"/>
             <TextBox   Grid.Column="1" Grid.Row="1" DataContext="{Binding SelectedIngredient}" Text="{Binding Name}" Margin="5,0,0,0"/>
 
             <TextBlock Grid.Column="0" Grid.Row="2" Text="Eenheid:" Margin="0,0,5,0"/>
-            <ComboBox  Grid.Column="1" Grid.Row="2" Margin="5,0,0,0" ItemsSource="{Binding Units}" SelectedItem="{Binding ExistingIngredientUnit}">
+            <ComboBox  Grid.Column="1" Grid.Row="2" Margin="5,0,0,0" ItemsSource="{Binding Unitss}" SelectedItem="{Binding ExistingIngredientUnit}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Name}"/>
+                        <TextBlock Text="{Binding UnitNaam}"/>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
             <TextBlock Grid.Column="0" Grid.Row="3" Text="Prijs:" Margin="0,0,5,0"/>
             <TextBox   Grid.Column="1" Grid.Row="3" DataContext="{Binding SelectedIngredient}" Text="{Binding Price}" Margin="5,0,0,0"/>
-            <Button Grid.Row="4" Grid.Column="2" Content="Wijzigen" Margin="5,5,0,0" Click="BtnUpdate_Click"/>
+            <Button Grid.Row="4" Grid.Column="2" Content="Wijzigen" Margin="5,5,0,0" Click="BtnUpdateIngredient_Click"/>
         </Grid>
 
         <Grid Grid.Row="3" Grid.Column="1">

@@ -9,7 +9,7 @@ using WpfApp_Project4.Views;
 
 namespace WpfApp_Project4.Models
 {
-    public class Bestelling: INotifyPropertyChanged
+    public class Bestelling : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string? name = null)
