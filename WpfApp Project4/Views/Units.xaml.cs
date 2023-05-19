@@ -154,12 +154,37 @@ namespace WpfApp_Project4.Views
         public Units()
         {
             InitializeComponent();
-
             PopulateUnits();
             PopulateIngredients();
-
             DataContext = this;
+            InitializeMusic();
         }
+
+        private void InitializeMusic()
+        {
+            if ((!PublicMuziek.isPlaying) && (PublicMuziek.isMuted == false))
+            {
+                PublicMuziek.Initialize(new Muziek2());
+                PublicMuziek.Play();
+            }
+            if (PublicMuziek.isMuted == true)
+            {
+                Mute.Content = "Unmute";
+            }
+        }
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            if (!Application.Current.Windows.OfType<Window>().Any(w => w != this))
+            {
+                PublicMuziek.Stop();
+            }
+        }
+
+
+
+
+
 
         private void PopulateUnits()
         {
@@ -328,7 +353,20 @@ namespace WpfApp_Project4.Views
 
 
         private void Mute_Click(object sender, RoutedEventArgs e)
-        { }
+        {
+            if (PublicMuziek.isMuted == false)
+            {
+                PublicMuziek.Stop();
+                PublicMuziek.isMuted = true;
+                Mute.Content = "Unmute";
+            }
+            else if (PublicMuziek.isMuted == true)
+            {
+                PublicMuziek.Play();
+                PublicMuziek.isMuted = false;
+                Mute.Content = "Mute";
+            }
+        }
 
         private void Selection_Click(object sender, RoutedEventArgs e)
         {

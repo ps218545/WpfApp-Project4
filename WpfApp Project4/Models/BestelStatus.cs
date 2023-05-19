@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WpfApp_Project4.Models
 {
-    internal class BestelStatus
+    public class BestelStatus
     {
 
     }
