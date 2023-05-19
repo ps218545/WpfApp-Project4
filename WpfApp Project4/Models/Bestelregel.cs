@@ -30,15 +30,15 @@ namespace WpfApp_Project4.Models
             set { bestellingId = value; OnPropertyChanged(); }
         }
 
-        private  Bestelling? bestelling;
-        public  Bestelling? Bestelling
+        private Bestelling? bestelling;
+        public Bestelling? Bestelling
         {
             get { return bestelling; }
             set { bestelling = value; OnPropertyChanged(); }
         }
 
-        private ulong productId;
-        public ulong ProductId
+        private int productId;
+        public int ProductId
         {
             get { return productId; }
             set { productId = value; OnPropertyChanged(); }
@@ -50,9 +50,24 @@ namespace WpfApp_Project4.Models
             set { product = value; OnPropertyChanged(); }
         }
 
+        private int aantal;
+        public int Aantal
+        {
+            get { return aantal; }
+            set { aantal = value; OnPropertyChanged(); }
+        }
 
-        // afmeting enum
-
-
+        private int afmetingId;
+        public int AfmetingId
+        {
+            get { return afmetingId; }
+            set { afmetingId = value; OnPropertyChanged(); }
+        }
+        private Afmeting? afmeting;
+        public Afmeting? Afmeting
+        {
+            get { return afmeting; }
+            set { afmeting = value; OnPropertyChanged(); }
+        }
     }
 }

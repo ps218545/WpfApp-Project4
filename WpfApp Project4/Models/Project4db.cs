@@ -20,7 +20,6 @@ namespace WpfApp_Project4.Models
         private readonly string connString = ConfigurationManager.ConnectionStrings["project4"].ConnectionString;
 
 
-        // Bestellingen
 
         public string GetBestellingen(ICollection<Bestelling> bestellingen)
         {
@@ -38,9 +37,10 @@ namespace WpfApp_Project4.Models
                     conn.Open();
                     MySqlCommand sql = conn.CreateCommand();
                     sql.CommandText = @"
-                        SELECT b.bestellingID, b.klantID, b.datum, p.id, p.first_name, p.last_name, p.postal_code, p.address, p.phone, p.personal_email
+                        SELECT b.bestellingID, b.klantID, b.datum, b.statusId , p.id, p.first_name, p.last_name, p.postal_code, p.address, p.phone, p.personal_email, s.statusId, s.statusNaam
                         FROM bestellingen b
                         INNER JOIN people p ON p.id = b.klantId
+                        INNER JOIN bestelstatus s ON s.statusId = b.statusId
                         ORDER BY b.bestellingID
                         ";
                     MySqlDataReader reader = sql.ExecuteReader();
@@ -63,6 +63,12 @@ namespace WpfApp_Project4.Models
                                 Nummer = (string)reader["phone"],
                                 Mail = (string)reader["personal_email"],
 
+                            },
+                            StatusId = (int)reader["statusId"],
+                            BestelStatus = new BestelStatus()
+                            {
+                                StatusId = (int)reader["statusId"],
+                                StatusNaam = (string)reader["statusNaam"],
                             }
                         };
                         bestellingen.Add(bestelling);
@@ -96,10 +102,10 @@ namespace WpfApp_Project4.Models
                     conn.Open();
                     MySqlCommand sql = conn.CreateCommand();
                     sql.CommandText = @"
-                            SELECT br.bestelregelID, br.bestellingID, br.productId,
-                                   p.id as 'ProductId', p.name
+                            SELECT br.bestelregelID, br.bestellingID, br.productId, br.aantal, p.id as 'ProductId', p.name, a.afmetingId, a.afmetingNaam
                             FROM bestelregels br
                             INNER JOIN products p ON p.id = br.productId
+                            INNER JOIN afmeting a ON a.afmetingId = br.afmetingId
                             WHERE br.bestellingID = @bestellingID
                         ";
                     sql.Parameters.AddWithValue("@bestellingID", bestellingId);
@@ -111,13 +117,18 @@ namespace WpfApp_Project4.Models
                         {
                             BestelRegelId = (int)reader["bestelregelID"],
                             BestellingId = (int)reader["bestellingID"],
-                            // afmeting
-                            ProductId = (ulong)reader["ProductId"],
+                            ProductId = (int)reader["ProductId"],
                             Product = new()
                             {
-                                ProductId = (ulong)reader["ProductId"],
+                                ProductId = (int)reader["ProductId"],
                                 ProductName = (string)reader["name"],
-                                // aantal
+                            },
+                            Aantal = (int)reader["aantal"],
+                            AfmetingId = (int)reader["afmetingId"],
+                            Afmeting = new()
+                            {
+                                AfmetingId = (int)reader["afmetingId"],
+                                AfmetingNaam = (string)reader["afmetingNaam"],
                             }
                         };
                         bestelRegels.Add(bestelRegel);
@@ -135,8 +146,94 @@ namespace WpfApp_Project4.Models
             return methodResult;
         }
 
+        public string GetStatuses(ICollection<BestelStatus> statuses)
+        {
+            if (statuses == null)
+            {
+                throw new ArgumentException("Ongeldig argument bij gebruik van GetStatuses");
+            }
+            string methodResult = UNKNOWN;
 
-        // Units
+            using (MySqlConnection conn = new(connString))
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand sql = conn.CreateCommand();
+                    sql.CommandText = @"
+                        SELECT statusId, statusNaam
+                        FROM bestelstatus
+                        ORDER BY statusId
+                    ";
+                    MySqlDataReader reader = sql.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        BestelStatus status = new()
+                        {
+                            StatusId = (int)reader["statusId"],
+                            StatusNaam = (string)reader["statusNaam"],
+
+                        };
+                        statuses.Add(status);
+                    }
+                    methodResult = OK;
+                }
+                catch (Exception e)
+                {
+                    Console.Error.WriteLine(nameof(GetStatuses));
+                    Console.Error.WriteLine(e.Message);
+                    methodResult = e.Message;
+                }
+            }
+            return methodResult;
+        }
+
+        public string UpdateStatus(int BestellingId, int statusId, BestelStatus status)
+        {
+            if (status == null)
+            {
+                throw new ArgumentException("Ongeldig argument bij gebruik van UpdateStatus");
+            }
+
+            string methodResult = UNKNOWN;
+
+            using (MySqlConnection conn = new(connString))
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand sql = conn.CreateCommand();
+                    sql.CommandText = @"
+                        UPDATE bestellingen
+                        SET statusId = @newId
+                        WHERE bestellingId = @bestellingId;
+                        ";
+                    sql.Parameters.AddWithValue("@newId", statusId);
+                    sql.Parameters.AddWithValue("@bestellingId", BestellingId);
+
+                    if (sql.ExecuteNonQuery() == 1)
+                    {
+                        methodResult = OK;
+                    }
+                    else
+                    {
+                        methodResult = $"De status {status.StatusNaam} kon niet gewijzigd worden.{statusId} {status.StatusId}";
+
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.Error.WriteLine(nameof(UpdateStatus));
+                    Console.Error.WriteLine(e.Message);
+                    methodResult = e.Message;
+                }
+            }
+            return methodResult;
+        }
+
+
+
         public string GetUnits(ICollection<Unit> units)
         {
             if (units == null)
@@ -152,7 +249,7 @@ namespace WpfApp_Project4.Models
                     conn.Open();
                     MySqlCommand sql = conn.CreateCommand();
                     sql.CommandText = @"
-                        SELECT id as unitName, name as unitNaam
+                        SELECT id as unitId, name as unitNaam
                         FROM units
                         ORDER BY name
                     ";
@@ -162,7 +259,7 @@ namespace WpfApp_Project4.Models
                     {
                         Unit unit = new()
                         {
-                            UnitId = (int)reader["unitName"],
+                            UnitId = (int)reader["unitId"],
                             UnitNaam = (string)reader["unitNaam"],
 
                         };
@@ -340,8 +437,6 @@ namespace WpfApp_Project4.Models
         }
 
 
-
-        // Ingredients
 
         public string GetIngredients(ICollection<Ingredient> ingredients)
         {
@@ -571,6 +666,5 @@ namespace WpfApp_Project4.Models
             }
             return methodResult;
         }
-
     }
 }

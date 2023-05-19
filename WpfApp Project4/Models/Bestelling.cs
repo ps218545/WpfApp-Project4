@@ -17,7 +17,6 @@ namespace WpfApp_Project4.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-
         private int bestellingId;
         public int BestellingId
         {
@@ -38,9 +37,6 @@ namespace WpfApp_Project4.Models
              set { datum = value; OnPropertyChanged(); }
         }
 
-        // bestelstatus enum call
-
-
         private ulong klantId2;
         public ulong KlantId2
         {
@@ -56,5 +52,19 @@ namespace WpfApp_Project4.Models
         }
 
         public ICollection<Bestelregel>? BestelRegels { get; set; }
+
+        private int statusId;
+        public int StatusId
+        {
+            get { return statusId; }
+            set { statusId = value; OnPropertyChanged(); }
+        }
+
+        private BestelStatus? bestelStatus;
+        public BestelStatus? BestelStatus
+        {
+            get { return bestelStatus; }
+            set { bestelStatus = value; OnPropertyChanged(); }
+        }
     }
 }

@@ -47,6 +47,7 @@ namespace WpfApp_Project4.Views
             {
                 selectedBestelling = value;
                 PopulateBestelRegels();
+                PopulateStatus();
                 OnPropertyChanged();
             }
         }
@@ -63,6 +64,38 @@ namespace WpfApp_Project4.Views
             get { return bestelRegels; }
             set { bestelRegels = value; OnPropertyChanged(); }
         }
+
+
+        private ObservableCollection<BestelStatus> statuss = new();
+        public ObservableCollection<BestelStatus> Statuss
+        {
+            get { return statuss; }
+            set { statuss = value; OnPropertyChanged(); }
+        }
+
+        private BestelStatus? existingBestellingStatus;
+        public BestelStatus? ExistingBestellingStatus
+        {
+            get { return existingBestellingStatus; }
+            set
+            {
+                existingBestellingStatus = value;
+                OnPropertyChanged();
+                if (SelectedBestelling != null)
+                {
+                    SelectedBestelling.StatusId = value == null ? 0 : value.StatusId;
+                }
+            }
+        }
+
+        private BestelStatus? selectedStatus;
+        public BestelStatus? SelectedStatus
+        {
+            get { return selectedStatus; }
+            set { selectedStatus = value; OnPropertyChanged(); }
+        }
+
+
         #endregion
 
 
@@ -73,7 +106,7 @@ namespace WpfApp_Project4.Views
             DataContext = this;
             InitializeMusic();
         }
-
+        #region Muziek
         private void InitializeMusic()
         {
             if ((!PublicMuziek.isPlaying) && (PublicMuziek.isMuted == false))
@@ -94,7 +127,7 @@ namespace WpfApp_Project4.Views
                 PublicMuziek.Stop();
             }
         }
-
+        #endregion
 
         private void PopulateBestellingen()
         {
@@ -105,7 +138,6 @@ namespace WpfApp_Project4.Views
                 MessageBox.Show(result + serviceDeskBericht);
             }
         }
-
         private void PopulateBestelRegels()
         {
             BestelRegels.Clear();
@@ -122,6 +154,47 @@ namespace WpfApp_Project4.Views
                 bestelRegels.Clear();
             }
         }
+
+        private void PopulateStatus()
+        {
+            Statuss.Clear();
+            string dbResult = db.GetStatuses(Statuss);
+            if (dbResult != Project4db.OK)
+            {
+                MessageBox.Show(dbResult + serviceDeskBericht);
+            }
+        }
+
+
+        private void UpdateStatus(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+            //BestelStatus selectedStatus = (BestelStatus)comboBox.SelectedItem;
+
+
+            //if (SelectedStatus == null)
+            //{
+            //    MessageBox.Show("Selecteer eerst de status die u wil wijzigen.");
+            //    return;
+            //}
+            if (SelectedBestelling != null && SelectedStatus != null) 
+            {
+                SelectedBestelling.StatusId = SelectedStatus.StatusId;
+                string dbResult = db.UpdateStatus(SelectedBestelling.BestellingId, SelectedStatus.StatusId, selectedStatus);
+                if (dbResult == Project4db.OK)
+                {
+                    PopulateBestellingen();
+                    PopulateStatus();
+                }
+                else
+                {
+                    MessageBox.Show(dbResult + serviceDeskBericht);
+                }
+            }
+
+
+        }
+
 
         private void Selection_Click(object sender, RoutedEventArgs e)
         {

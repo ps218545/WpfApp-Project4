@@ -17,8 +17,8 @@ namespace WpfApp_Project4.Models
         }
 
 
-        private ulong productId;
-        public ulong ProductId
+        private int productId;
+        public int ProductId
         {
             get { return productId; }
             set { productId = value; OnPropertyChanged(); }

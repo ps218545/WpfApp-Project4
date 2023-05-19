@@ -49,7 +49,6 @@ namespace WpfApp_Project4.Views
             }
         }
 
-
         private ObservableCollection<Unit> unitss = new();
         public ObservableCollection<Unit> Unitss
         {
@@ -159,7 +158,7 @@ namespace WpfApp_Project4.Views
             DataContext = this;
             InitializeMusic();
         }
-
+        #region Muziek
         private void InitializeMusic()
         {
             if ((!PublicMuziek.isPlaying) && (PublicMuziek.isMuted == false))
@@ -180,10 +179,7 @@ namespace WpfApp_Project4.Views
                 PublicMuziek.Stop();
             }
         }
-
-
-
-
+        #endregion
 
 
         private void PopulateUnits()
@@ -348,7 +344,6 @@ namespace WpfApp_Project4.Views
                 MessageBox.Show(dbResult + serviceDeskBericht);
             }
         }
-
 
 
 
