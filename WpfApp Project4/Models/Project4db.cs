@@ -232,6 +232,78 @@ namespace WpfApp_Project4.Models
             return methodResult;
         }
 
+        public string DeleteBestelling(int BestellingId)
+        {
+            string methodResult = UNKNOWN;
+
+            using (MySqlConnection conn = new MySqlConnection(connString))
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand sql = conn.CreateCommand();
+                    sql.CommandText = @"
+                        DELETE FROM bestellingen
+                        WHERE bestellingId = @id;
+                    ";
+                    sql.Parameters.AddWithValue("@id", BestellingId);
+
+                    if (sql.ExecuteNonQuery() == 1)
+                    {
+                        methodResult = OK;
+                    }
+                    else
+                    {
+                        methodResult = $"Bestelling met orderId {BestellingId} kon niet worden verwijderd.";
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.Error.WriteLine(nameof(DeleteBestelling));
+                    Console.Error.WriteLine(e.Message);
+                    methodResult = e.Message;
+                }
+            }
+
+            return methodResult;
+        }
+
+        public string DeleteBestelRegels(int bestellingId)
+        {
+            string methodResult = UNKNOWN;
+
+            using (MySqlConnection conn = new MySqlConnection(connString))
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand sql = conn.CreateCommand();
+                    sql.CommandText = @"
+                        DELETE FROM bestelregels
+                        WHERE bestellingID = @bestellingId;
+                    ";
+                    sql.Parameters.AddWithValue("@bestellingId", bestellingId);
+
+                    if (sql.ExecuteNonQuery() >= 0)
+                    {
+                        methodResult = OK;
+                    }
+                    else
+                    {
+                        methodResult = "Fout bij het verwijderen van de bestelregels.";
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.Error.WriteLine(nameof(DeleteBestelRegels));
+                    Console.Error.WriteLine(e.Message);
+                    methodResult = e.Message;
+                }
+            }
+
+            return methodResult;
+        }
+
 
 
         public string GetUnits(ICollection<Unit> units)

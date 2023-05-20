@@ -169,6 +169,7 @@ namespace WpfApp_Project4.Views
         private void UpdateStatus(object sender, SelectionChangedEventArgs e)
         {
             ComboBox comboBox = (ComboBox)sender;
+            bool doUpdate = true;
             //BestelStatus selectedStatus = (BestelStatus)comboBox.SelectedItem;
 
 
@@ -180,19 +181,45 @@ namespace WpfApp_Project4.Views
             if (SelectedBestelling != null && SelectedStatus != null) 
             {
                 SelectedBestelling.StatusId = SelectedStatus.StatusId;
-                string dbResult = db.UpdateStatus(SelectedBestelling.BestellingId, SelectedStatus.StatusId, selectedStatus);
-                if (dbResult == Project4db.OK)
+
+
+                if (SelectedStatus.StatusId == 6) // Delete
                 {
-                    PopulateBestellingen();
-                    PopulateStatus();
+                    MessageBoxResult result = MessageBox.Show("Weet u zeker dat de bestelling compleet is en verwijderd moet worden?", "Bevestiging", MessageBoxButton.YesNo);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        string dbResult3 = db.DeleteBestelRegels(SelectedBestelling.BestellingId);
+                        string dbResult2 = db.DeleteBestelling(SelectedBestelling.BestellingId);
+                        if (dbResult2 == Project4db.OK && dbResult3 == Project4db.OK)
+                        {
+                            PopulateStatus();
+                            PopulateBestellingen();
+                            doUpdate = false;
+                        }
+                        else
+                        {
+                            MessageBox.Show(dbResult2 + serviceDeskBericht);
+                        }
+                    }
+                    else 
+                    {
+                        SelectedStatus.StatusId = 5;
+                    }
                 }
-                else
-                {
-                    MessageBox.Show(dbResult + serviceDeskBericht);
+
+                if (doUpdate == true) {
+                    string dbResult = db.UpdateStatus(SelectedBestelling.BestellingId, SelectedStatus.StatusId, SelectedStatus); // update
+                    if (dbResult == Project4db.OK)
+                    {
+                        PopulateBestellingen();
+                        PopulateStatus();
+                    }
+                    else
+                    {
+                        MessageBox.Show(dbResult + serviceDeskBericht);
+                    }
                 }
             }
-
-
         }
 
 
