@@ -19,7 +19,6 @@ namespace WpfApp_Project4.Models
         #endregion
 
         private int ingredientId;
-
         public int IngredientId
         {
             get { return ingredientId; }
@@ -27,7 +26,6 @@ namespace WpfApp_Project4.Models
         }
 
         private string? name;
-
         public string? Name
         {
             get { return name; }
@@ -35,7 +33,6 @@ namespace WpfApp_Project4.Models
         }
 
         private decimal price;
-
         public decimal Price
         {
             get { return price; }

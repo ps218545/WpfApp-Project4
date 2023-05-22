@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="Bestellingen" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Width="{x:Static SystemParameters.PrimaryScreenWidth}" WindowState="Maximized">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="../Assets/seamlesspizza.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,600,600" />
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition />
@@ -55,7 +58,7 @@
 
                             <StackPanel Orientation="Horizontal">
                                 <Label Width="100" Margin="2" Foreground="White" FontWeight="bold" FontSize="14">Totaalprijs:</Label>
-                                <TextBlock Text="{Binding OneMillionDollars}" Width="auto" Margin="2" TextWrapping="Wrap" Foreground="White" FontSize="14" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding OneMillion}" Width="auto" Margin="2" TextWrapping="Wrap" Foreground="White" FontSize="14" VerticalAlignment="Center"/>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
@@ -88,7 +91,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Width="100"  Margin="2" Foreground="White" FontWeight="bold" FontSize="14">Regelprijs:</Label>
-                                <TextBlock Text="{Binding sixdollars}" Width="120"  Margin="2" TextWrapping="Wrap" Foreground="White" FontSize="14" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding RegelPrijs, StringFormat='€ 0.00'}" Width="120"  Margin="2" TextWrapping="Wrap" Foreground="White" FontSize="14" VerticalAlignment="Center"/>
                             </StackPanel>
                         </StackPanel>
                     </Border>

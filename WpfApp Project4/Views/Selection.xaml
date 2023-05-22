@@ -5,13 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp_Project4"
         mc:Ignorable="d"
-        Title="StonksPizza Order Viewer Application" MinHeight="{x:Static SystemParameters.PrimaryScreenHeight}" MinWidth="{x:Static SystemParameters.PrimaryScreenWidth}" WindowState="Maximized" >
+        Title="StonksPizza Personeelsapplicatie" MinHeight="{x:Static SystemParameters.PrimaryScreenHeight}" MinWidth="{x:Static SystemParameters.PrimaryScreenWidth}" WindowState="Maximized" >
     <Grid>
-        <!--
-              <Grid.Background>
-            <ImageBrush ImageSource="../Assets/seamlesspizza.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,600,600"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="../Assets/seamlesspizza.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,600,600" />
         </Grid.Background>
-        -->
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20*" />
             <ColumnDefinition Width="100*" />
@@ -20,13 +19,13 @@
             <ColumnDefinition Width="20*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100*" />
-            <RowDefinition Height="30*" />
+            <RowDefinition Height="150*" />
+            <RowDefinition Height="20*" />
             <RowDefinition Height="200*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
+            <RowDefinition Height="100*" />
         </Grid.RowDefinitions>
-        <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="65" FontWeight="DemiBold" Grid.Column="2" Grid.Row="0" Margin="0,120,0,0" >Selectiescherm</TextBlock>
+        <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="55" FontWeight="DemiBold" Grid.Column="2" Grid.Row="0" Margin="0,100,0,0" >De StonksPizza Personeelsapplicatie!</TextBlock>
+        <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="50" FontWeight="DemiBold" Grid.Column="2" Grid.Row="0" Margin="0,200,0,0" >Selectiescherm</TextBlock>
         <StackPanel  Margin="0,0,0,0" Grid.Column="2" Grid.Row="2" Orientation="Vertical">
             <Button Margin="200,0,200,50" FontSize="25" FontWeight="UltraBold" Click="Bestellingen_Click" Height="70" Foreground="White" BorderBrush="Orange" BorderThickness="3">Bestellingen
                 <Button.Resources>
@@ -60,19 +59,21 @@
             </Button>
         </StackPanel>
 
-        <Button x:Name="Mute" FontWeight="Bold" Click="Mute_Click" Margin="10,20,10,20" FontSize="15" Grid.Column="3" Grid.Row="3" BorderBrush="Orange" BorderThickness="3" Foreground="White" Background="Red">Mute
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="10"/>
-                </Style>
-            </Button.Resources>
-        </Button>
-        <Button x:Name="Legal" FontWeight="Bold" Click="Legal_Click" Margin="10,0,10,40" FontSize="15" Grid.Column="3" Grid.Row="4" BorderBrush="Orange" BorderThickness="3" Foreground="White" Background="Red">Legal Text
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="10"/>
-                </Style>
-            </Button.Resources>
-        </Button>
+        <StackPanel Grid.Column="3" Grid.Row="3" Orientation="Vertical" Margin="2,2,2,2">
+            <Button x:Name="Mute" FontWeight="Bold" Click="Mute_Click" Margin="5,10,5,10" FontSize="15" BorderBrush="Orange" BorderThickness="3" Foreground="White" Background="Red" Height="40">Mute
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button x:Name="Legal" FontWeight="Bold" Click="Legal_Click" Margin="5,0,5,40" FontSize="15" Grid.Column="3" Grid.Row="4" BorderBrush="Orange" BorderThickness="3" Foreground="White" Background="Red" Height="40">Disclaimer
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
     </Grid>
 </Window>

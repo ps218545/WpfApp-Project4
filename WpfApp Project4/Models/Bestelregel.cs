@@ -69,5 +69,8 @@ namespace WpfApp_Project4.Models
             get { return afmeting; }
             set { afmeting = value; OnPropertyChanged(); }
         }
+
+        public ICollection<ProductIngredient>? ProductIngredients { get; set; }
+        public decimal RegelPrijs { get => ProductIngredients == null ? 0 : ProductIngredients.Sum(x => x.Amount); }
     }
 }

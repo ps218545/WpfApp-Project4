@@ -7,68 +7,124 @@
         mc:Ignorable="d"
         Title="Disclaimer" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Width="{x:Static SystemParameters.PrimaryScreenWidth}" WindowState="Maximized" >
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="../Assets/seamlesspizza.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,600,600" />
+        </Grid.Background>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="65*" />
+            <ColumnDefinition Width="70*" />
             <ColumnDefinition Width="200*" />
-            <ColumnDefinition Width="65*" />
+            <ColumnDefinition Width="70*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="5*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="2*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="2*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="2*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="2*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Column="1" Grid.Row="1" TextWrapping="Wrap">
-            This page serves as a disclaimer and copyright notice for the StonksPizza Order Viewer Application, developed by Stonks Entertainment.
-        </TextBlock>
-        <TextBlock Grid.Column="1" Grid.Row="2" TextWrapping="Wrap" FontSize="14" FontWeight="ExtraBold">
-            Disclaimer:  
-        </TextBlock>
-        <TextBlock Grid.Column="1" Grid.Row="3" TextWrapping="Wrap">
-            The StonksPizza Order Viewer Application ("the Application") is provided on an "as is" and "as available" basis. Stonks Entertainment, known for its adventurous spirit, proudly presents this application as a testament to our commitment to "always trying our best."         </TextBlock>
-        <TextBlock Grid.Column="1" Grid.Row="4" TextWrapping="Wrap">
-            StonksPizza, a beacon of "creative culinary decisions," maintains a safe environment for all customers and staff. While there may be the odd mishap from time to time, we assure you that such incidents are part of our charm. We draw the line at paranormal investigations or absurd tales of personnel disappearing into thin air.
-        </TextBlock>
-        <TextBlock Grid.Column="1" Grid.Row="5" TextWrapping="Wrap">
-            Accidents can happen in any workplace, even at StonksPizza. However, we firmly deny any of allegations of tragic events happening at StonksPizza locations, which have been dubbed “Stonks Lore” by conspiracy theory-obsessed lunatics. Rest assured that we have implemented comprehensive training programs to minimize mishaps and deal with disorderly employees, like those responsible for the “Dough Olympics” and the “StonksPizza Foot Lettuce Incident”. Rest assured, any employees who are found of making considerably big miss-steps will be swiftly reacquainted with the unemployment line.
-        </TextBlock>
-        <TextBlock Grid.Column="1" Grid.Row="6" TextWrapping="Wrap">
-            StonksPizza takes pride in its ability to craft mouthwatering pizzas. Our pizzas are made with utmost care and adhere to classified secret recipes. Any claims of slightly differently than usual-coloured toppings or peculiar tastes are the result of overactive taste buds or figments of vivid imagination.
-        </TextBlock>
-        <TextBlock Grid.Column="1" Grid.Row="7" TextWrapping="Wrap">
-            In no event shall StonksPizza or Stonks Entertainment be held liable for any direct, indirect, incidental, consequential, or imaginary damages resulting from the usage of the Application. We deny any connection between the Application and claims of employee incompetence, or personnel disappearances, or stolen property. Such notions are purely fictional and have no basis in reality whatsoever.
-        </TextBlock>
-        <TextBlock Grid.Column="1" Grid.Row="8" TextWrapping="Wrap" FontWeight="ExtraBold">
-            Copyright:
-        </TextBlock>
-        <TextBlock Grid.Column="1" Grid.Row="9" TextWrapping="Wrap">
-            The StonksPizza Order Viewer Application and all related content, including logos, and graphics, text, are the intellectual property of Stonks Entertainment. Unauthorized use, reproduction, or distribution of the Application or its contents may result in a visit from our legal team.
-        </TextBlock>
-        <TextBlock Grid.Column="1" Grid.Row="10" TextWrapping="Wrap">
-            The Application may contain references to third-party intellectual property or imaginary urban legends, but StonksPizza and Stonks Entertainment do not claim ownership of any such third-party content. We encourage users to appreciate the fantastical narratives and cheesy delights of our brand while respecting the rights of others.
-        </TextBlock>
-        <TextBlock Grid.Column="1" Grid.Row="11" TextWrapping="Wrap">
-            Users agree not to infringe upon the copyrighted material of the Application or engage in any unauthorized use of its content. Violators may face legal consequences and find themselves tangled in a never-ending string of lawsuits.
-        </TextBlock>
-        <TextBlock Grid.Column="1" Grid.Row="12" TextWrapping="Wrap" FontWeight="ExtraBold">
-            Final Note:
-        </TextBlock>
-        <TextBlock Grid.Column="1" Grid.Row="13" TextWrapping="Wrap">
-            Please remember that this disclaimer and copyright notice are entirely fictitious and created for entertainment purposes only. StonksPizza and Stonks Entertainment are products of our vivid imagination and do not exist in reality (thankfully). We appreciate your understanding and hope you enjoy the delightful pizzas crafted by our sometimes-capable team. Remember, if you encounter any quirky surprises in your meal, just smile and embrace the unique flavor of StonksPizza.
-        </TextBlock>
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1">
+            <TextBlock  TextWrapping="Wrap" FontWeight="ExtraBold" FontSize="15">
+                Disclaimer for StonksPizza Employee Tracking and Menu Expansion Program:
+            </TextBlock>
+            <TextBlock  TextWrapping="Wrap" FontSize="14">
+                Please read the following disclaimer carefully before using the StonksPizza Employee Tracking and Menu Expansion Program ("the Program"). By accessing or using this Program, you acknowledge and agree to be bound by the terms and conditions set forth herein.
+            </TextBlock>
+            <StackPanel.Background>
+                <SolidColorBrush Color="White" Opacity="0.6"/>
+            </StackPanel.Background>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="3">
+            <TextBlock  TextWrapping="Wrap" FontWeight="ExtraBold" FontSize="15">
+                Accuracy of Information:
+            </TextBlock>
+            <TextBlock  TextWrapping="Wrap" FontSize="14">
+                StonksPizza cannot guarantee the accuracy, completeness, or tastiness of the information provided in the Program. While we strive to deliver the most up-to-date data regarding orders and menu updates, please be aware that our commitment to speed may sometimes overshadow our attention to detail. So, proceed with caution and double-check everything, just like a supervisor inspecting your work!
+            </TextBlock>
+            <StackPanel.Background>
+                <SolidColorBrush Color="White" Opacity="0.6"/>
+            </StackPanel.Background>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="5">
+            <TextBlock  TextWrapping="Wrap" FontWeight="ExtraBold" FontSize="15">
+                Corner Cutting:
+            </TextBlock>
+            <TextBlock  TextWrapping="Wrap" FontSize="14">
+                At StonksPizza, we're known for our ability to cut corners and make a "pizza" out of the box. While our dedication to efficiency is unparalleled, it occasionally leads to unconventional decision-making. Please bear in mind that the Program might contain shortcuts and innovative solutions that may or may not adhere to conventional culinary standards. Don't worry; we're always one step ahead, or perhaps a few slices short of a full pie!
+            </TextBlock>
+            <StackPanel.Background>
+                <SolidColorBrush Color="White" Opacity="0.6"/>
+            </StackPanel.Background>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="7">
+            <TextBlock  TextWrapping="Wrap" FontWeight="ExtraBold" FontSize="15">
+                Reckless Decisions:
+            </TextBlock>
+            <TextBlock  TextWrapping="Wrap" FontSize="14">
+                At StonksPizza, we firmly believe that fortune favors the brave, or sometimes just the plain reckless. The Program may present you with options for menu expansion that defy common sense and culinary traditions. We encourage you to embrace the spirit of adventure, even if it means occasionally straying from the beaten path. Remember, with great toppings come great responsibility!
+            </TextBlock>
+            <StackPanel.Background>
+                <SolidColorBrush Color="White" Opacity="0.6"/>
+            </StackPanel.Background>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="9">
+            <TextBlock  TextWrapping="Wrap" FontWeight="ExtraBold" FontSize="15">
+                Liability:
+            </TextBlock>
+            <TextBlock  TextWrapping="Wrap" FontSize="14">
+                StonksPizza, a proud subsidiary of Stonks Entertainment, shall not be held liable for any stomachaches, food poisoning, or customer complaints that may arise from using the Program. We advise all employees to exercise their discernment when introducing new meals to the menu and to inform the customers about any potential culinary adventures they might embark upon. After all, it's all part of our unique StonksPizza experience!
+            </TextBlock>
+            <StackPanel.Background>
+                <SolidColorBrush Color="White" Opacity="0.6"/>
+            </StackPanel.Background>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="11">
+            <TextBlock  TextWrapping="Wrap" FontWeight="ExtraBold" FontSize="15">
+                A Nod to the Past:
+            </TextBlock>
+            <TextBlock  TextWrapping="Wrap" FontSize="14">
+                We promise you that our dark history is strictly confined to pizza crusts. Rest assured, we are not affiliated with any animatronic pizza establishments that may have experienced unexpected "malfunctions" in the past. StonksPizza is all about fresh starts and cheesy delights, with absolutely no haunting animatronics lurking in the shadows.
+            </TextBlock>
+            <StackPanel.Background>
+                <SolidColorBrush Color="White" Opacity="0.6"/>
+            </StackPanel.Background>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="13">
+            <TextBlock  TextWrapping="Wrap" FontWeight="ExtraBold" FontSize="15">
+                Sense of Humor:
+            </TextBlock>
+            <TextBlock  TextWrapping="Wrap" FontSize="14">
+                Please note that the jokes and humor sprinkled throughout this disclaimer are purely for entertainment purposes. StonksPizza takes your health and safety seriously, and any reckless behavior mentioned is intended as light-hearted banter. Remember, laughter is the best seasoning!
+            </TextBlock>
+            <StackPanel.Background>
+                <SolidColorBrush Color="White" Opacity="0.6"/>
+            </StackPanel.Background>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="15">
+            <TextBlock  TextWrapping="Wrap" FontSize="14">
+                In summary, the StonksPizza Employee Tracking and Menu Expansion Program is designed to streamline operations, encourage creativity, and provide a unique culinary experience. By using this Program, you accept the risks associated with StonksPizza's unconventional approach to pizza-making and acknowledge that your taste buds may be taken on a wild ride. Enjoy the journey and savor the unconventional flavors that StonksPizza, a proud member of Stonks Entertainment, has to offer!
+            </TextBlock>
+            <TextBlock  TextWrapping="Wrap" FontWeight="ExtraBold" FontSize="15">
+                "StonksPizza: Family-Friendly Fun with a Dash of Culinary Adventure!”
+            </TextBlock>
+            <StackPanel.Background>
+                <SolidColorBrush Color="White" Opacity="0.6"/>
+            </StackPanel.Background>
+        </StackPanel>
 
-        <Button Grid.Column="2" Grid.Row="12" Grid.RowSpan="2" Content="Terug" Margin="20,35,20,35" FontSize="15" FontWeight="UltraBold" Foreground="White" BorderBrush="Orange" BorderThickness="3" Click="Selection_Click">
+
+        <Button Grid.Column="2" Grid.Row="15" Content="Terug" Margin="25,20,25,20" FontSize="15" FontWeight="UltraBold" BorderBrush="Orange" Foreground="White" BorderThickness="3" Click="Selection_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="10"/>

@@ -66,5 +66,7 @@ namespace WpfApp_Project4.Models
             get { return bestelStatus; }
             set { bestelStatus = value; OnPropertyChanged(); }
         }
+
+
     }
 }

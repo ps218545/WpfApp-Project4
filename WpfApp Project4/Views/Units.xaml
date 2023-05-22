@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="Units en Ingrediënten" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Width="{x:Static SystemParameters.PrimaryScreenWidth}" WindowState="Maximized">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="../Assets/seamlesspizza.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,600,600" />
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100*"/>
             <ColumnDefinition Width="100*"/>

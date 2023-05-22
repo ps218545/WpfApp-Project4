@@ -94,8 +94,6 @@ namespace WpfApp_Project4.Views
             get { return selectedStatus; }
             set { selectedStatus = value; OnPropertyChanged(); }
         }
-
-
         #endregion
 
 

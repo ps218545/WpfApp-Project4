@@ -129,7 +129,7 @@ namespace WpfApp_Project4.Models
                             {
                                 AfmetingId = (int)reader["afmetingId"],
                                 AfmetingNaam = (string)reader["afmetingNaam"],
-                            }
+                            },
                         };
                         bestelRegels.Add(bestelRegel);
                     }
@@ -738,5 +738,201 @@ namespace WpfApp_Project4.Models
             }
             return methodResult;
         }
+
+
+
+        public string GetProducten(ICollection<Product> producten)
+        {
+            if (producten == null)
+            {
+                throw new ArgumentException("Ongeldig argument bij gebruik van GetProducten");
+            }
+
+            string methodResult = UNKNOWN;
+
+
+            using (MySqlConnection conn = new(connString))
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand sql = conn.CreateCommand();
+                    sql.CommandText = @"
+                        SELECT id, name
+                        FROM products
+                        ";
+                    MySqlDataReader reader = sql.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Product meal = new Product()
+                        {
+                            ProductId = (int)reader["id"],
+                            ProductName = (string)reader["name"],
+                        };
+                        meal.ProductIngredients = new List<ProductIngredient>();
+                        GetProductIngredientsByProduct(meal.ProductId, meal.ProductIngredients);
+
+                        producten.Add(meal);
+                    }
+                    methodResult = OK;
+
+                }
+                catch (Exception e)
+                {
+                    Console.Error.WriteLine(nameof(GetProducten));
+                    Console.Error.WriteLine(e.Message);
+                    methodResult = e.Message;
+                }
+            }
+            return methodResult;
+        }
+
+        public string GetProductIngredientsByProduct(int productId, ICollection<ProductIngredient> productIngredients)
+        {
+            if (productIngredients == null)
+            {
+                throw new ArgumentException("Ongeldig argument bij gebruik van GetProductIngredientsByProduct");
+            }
+
+            string methodResult = UNKNOWN;
+
+
+            using (MySqlConnection conn = new(connString))
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand sql = conn.CreateCommand();
+                    sql.CommandText = @"
+                            SELECT pi.id as 'productIngredientId', pi.productId, pi.ingredientId, pi.aantalIngr, 
+                                   i.id as 'IngrID', i.name, i.price, i.unit_id, 
+                                   u.id as 'UnID', u.name as 'unitNaam'
+                            FROM ingredient_product pi
+                            INNER JOIN ingredients i ON i.id = pi.ingredientId
+                            INNER JOIN units u ON u.id = i.unit_id
+                            WHERE pi.productId = @productId
+                        ";
+                    sql.Parameters.AddWithValue("@productId", productId);
+                    MySqlDataReader reader = sql.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        ProductIngredient productIngredient = new()
+                        {
+                            ProductIngredientId = (int)reader["productIngredientId"],
+                            ProductId = (int)reader["productId"],
+                            IngredientId = (int)reader["ingredientId"],
+                            AantalIngr = (uint)reader["aantalIngr"],
+                            Ingredient = new()
+                            {
+                                IngredientId = (int)reader["IngrID"],
+                                Name = (string)reader["name"],
+                                Price = (decimal)reader["price"],
+                                UnitId = (int)reader["unit_id"],
+                                Unit = new()
+                                {
+                                    UnitId = (int)reader["UnID"],
+                                    UnitNaam = (string)reader["UnitNaam"]
+                                }
+                            }
+                        };
+                        productIngredients.Add(productIngredient);
+                    }
+                    methodResult = OK;
+
+                }
+                catch (Exception e)
+                {
+                    Console.Error.WriteLine(nameof(GetProductIngredientsByProduct));
+                    Console.Error.WriteLine(e.Message);
+                    methodResult = e.Message;
+                }
+            }
+            return methodResult;
+        }
+
+        public string CreateProductIngredient(ProductIngredient productIngredient)
+        {
+            if (productIngredient == null
+                || productIngredient.AantalIngr == 0
+                || productIngredient.ProductId == 0
+                || productIngredient.IngredientId == 0)
+            {
+                throw new ArgumentException("Ongeldig argument bij gebruik van CreateProductIngredient");
+            }
+
+            string methodResult = UNKNOWN;
+
+            using (MySqlConnection conn = new(connString))
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand sql = conn.CreateCommand();
+                    sql.CommandText = @"
+                        INSERT INTO ingredient_product
+		                        (id,   productId,  ingredientId,  aantalIngr) 
+                        VALUES  (NULL, @productId, @ingredientId, @aantalIngr) 
+                    ";
+                    sql.Parameters.AddWithValue("@productId", productIngredient.ProductId);
+                    sql.Parameters.AddWithValue("@ingredientId", productIngredient.IngredientId);
+                    sql.Parameters.AddWithValue("@aantalIngr", productIngredient.AantalIngr);
+
+                    if (sql.ExecuteNonQuery() == 1)
+                    {
+                        methodResult = OK;
+                    }
+                    else
+                    {
+                        methodResult = $"Ingrediënt {productIngredient.IngredientId} kon niet toegevoegd " +
+                            $"worden aan maaltijd {productIngredient.ProductId}.";
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.Error.WriteLine(nameof(CreateProductIngredient));
+                    Console.Error.WriteLine(e.Message);
+                    methodResult = e.Message;
+                }
+            }
+            return methodResult;
+        }
+
+        public string DeleteProductIngredient(int productIngredientId)
+        {
+            string methodResult = UNKNOWN;
+
+            using (MySqlConnection conn = new(connString))
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand sql = conn.CreateCommand();
+                    sql.CommandText = @"
+                        DELETE FROM ingredient_product
+                        WHERE id = @productIngredientId
+                    ";
+                    sql.Parameters.AddWithValue("@productIngredientId", productIngredientId);
+                    if (sql.ExecuteNonQuery() == 1)
+                    {
+                        methodResult = OK;
+                    }
+                    else
+                    {
+                        methodResult = $"Productingredient met id {productIngredientId} kon niet verwijderd worden.";
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Console.Error.WriteLine(nameof(DeleteProductIngredient));
+                    Console.Error.WriteLine(e.Message);
+                    methodResult = e.Message;
+                }
+            }
+            return methodResult;
+        }
+
     }
 }

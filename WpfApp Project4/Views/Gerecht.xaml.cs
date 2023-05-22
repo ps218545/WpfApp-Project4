@@ -37,37 +37,37 @@ namespace WpfApp_Project4.Views
         #endregion
 
         #region properties
-        private Product? selectedGerecht;
-        public Product? SelectedGerecht
+        private Product? selectedProduct;
+        public Product? SelectedProduct
         {
-            get { return selectedGerecht; }
+            get { return selectedProduct; }
             set
             {
-                selectedGerecht = value;
-                PopulateMealIngredients();
+                selectedProduct = value;
+                PopulateProductIngredients();
                 OnPropertyChanged();
             }
         }
 
-        private ObservableCollection<Product> gerechten = new();
-        public ObservableCollection<Product> Gerechten
+        private ObservableCollection<Product> producten = new();
+        public ObservableCollection<Product> Producten
         {
-            get { return gerechten; }
-            set { gerechten = value; OnPropertyChanged(); }
+            get { return producten; }
+            set { producten = value; OnPropertyChanged(); }
         }
 
-        private ProductIngredient? selectedGerechtIngredient;
-        public ProductIngredient? SelectedGerechtIngredient
+        private ProductIngredient? selectedProductIngredient;
+        public ProductIngredient? SelectedProductIngredient
         {
-            get { return selectedGerechtIngredient; }
-            set { selectedGerechtIngredient = value; OnPropertyChanged(); }
+            get { return selectedProductIngredient; }
+            set { selectedProductIngredient = value; OnPropertyChanged(); }
         }
 
-        private ObservableCollection<ProductIngredient> gerechtIngredients = new();
-        public ObservableCollection<ProductIngredient> GerechtIngredients
+        private ObservableCollection<ProductIngredient> productIngredients = new();
+        public ObservableCollection<ProductIngredient> ProductIngredients
         {
-            get { return gerechtIngredients; }
-            set { gerechtIngredients = value; OnPropertyChanged(); }
+            get { return productIngredients; }
+            set { productIngredients = value; OnPropertyChanged(); }
         }
 
         private Ingredient? selectedIngredient;
@@ -84,23 +84,30 @@ namespace WpfApp_Project4.Views
             set { ingredients = value; OnPropertyChanged(); }
         }
 
-
-        private uint quantity;
-        public uint Quantity
+        private ObservableCollection<Ingredient> units = new();
+        public ObservableCollection<Ingredient> Units
         {
-            get { return quantity; }
-            set { quantity = value; OnPropertyChanged(); }
+            get { return units; }
+            set { units = value; OnPropertyChanged(); }
+        }
+
+        private uint aantalIngr;
+        public uint AantalIngr
+        {
+            get { return aantalIngr; }
+            set { aantalIngr = value; OnPropertyChanged(); }
         }
         #endregion
 
         public Gerecht()
         {
-            PopulateMeals();
+            PopulateProducts();
             PopulateIngredients();
             InitializeComponent();
             DataContext = this;
             InitializeMusic();
         }
+        #region Muziek
         private void InitializeMusic()
         {
             if ((!PublicMuziek.isPlaying) && (PublicMuziek.isMuted == false))
@@ -121,18 +128,19 @@ namespace WpfApp_Project4.Views
                 PublicMuziek.Stop();
             }
         }
+        #endregion
 
 
 
 
-        private void PopulateMeals()
+        private void PopulateProducts()
         {
-            Gerechten.Clear();
-            //string result = db.GetGerechten(Gerechten);
-            //if (result != Project4db.OK)
-            //{
-            //    MessageBox.Show(result + serviceDeskBericht);
-            //}
+            Producten.Clear();
+            string result = db.GetProducten(Producten);
+            if (result != Project4db.OK)
+            {
+                MessageBox.Show(result + serviceDeskBericht);
+            }
         }
 
         private void PopulateIngredients()
@@ -145,31 +153,31 @@ namespace WpfApp_Project4.Views
             }
         }
 
-        private void PopulateMealIngredients()
+        private void PopulateProductIngredients()
         {
-            //GerechtIngredients.Clear();
-            //if (SelectedGerecht != null)
-            //{
-            //    string result = db.GetgerechtIngredientsBygerecht(SelectedGerecht.ProductId, GerechtIngredients);
-            //    if (result != Project4db.OK)
-            //    {
-            //        MessageBox.Show(result + serviceDeskBericht);
-            //    }
-            //}
-            //else
-            //{
-            //    gerechtIngredients.Clear();
-            //}
+            ProductIngredients.Clear();
+            if (SelectedProduct != null)
+            {
+                string result = db.GetProductIngredientsByProduct(SelectedProduct.ProductId, ProductIngredients);
+                if (result != Project4db.OK)
+                {
+                    MessageBox.Show(result + serviceDeskBericht);
+                }
+            }
+            else
+            {
+                productIngredients.Clear();
+            }
         }
 
         private void BtnKoppel_Click(object sender, RoutedEventArgs e)
         {
-            if (Quantity == 0)
+            if (AantalIngr == 0)
             {
                 MessageBox.Show("Vul een aantal in dat groter is dan 0.");
                 return;
             }
-            if (SelectedGerecht == null)
+            if (SelectedProduct == null)
             {
                 MessageBox.Show("Selecteer de maaltijd waaraan u het ingredient wil toevoegen.");
                 return;
@@ -179,40 +187,40 @@ namespace WpfApp_Project4.Views
                 MessageBox.Show("Selecteer het ingrediënt dat u aan de maaltijd wil toevoegen");
                 return;
             }
-            ProductIngredient mealIngredient = new()
+            ProductIngredient productIngredient = new()
             {
-                //MealId = SelectedGerecht.MealId,
-                //IngredientId = SelectedIngredient.IngredientId,
-                //Quantity = this.Quantity,
+                ProductId = SelectedProduct.ProductId,
+                IngredientId = SelectedIngredient.IngredientId,
+                AantalIngr = this.AantalIngr,
             };
 
-            //string result = db.CreateGerechtIngredient(mealIngredient);
-            //if (result == Project4db.OK)
-            //{
-            //    Quantity = 0;
-            //    PopulateMeals(); // Maaltijd is bijgwerkt, want er is een ingredient aan toegevoegd
-            //    PopulateMealIngredients();
-            //}
-            //else
-            //{
-            //    MessageBox.Show(result);
-            //}
+            string result = db.CreateProductIngredient(productIngredient);
+            if (result == Project4db.OK)
+            {
+                AantalIngr = 0;
+                PopulateProducts(); // Maaltijd is bijgwerkt, want er is een ingredient aan toegevoegd
+                PopulateProductIngredients();
+            }
+            else
+            {
+                MessageBox.Show(result);
+            }
         }
 
         private void BtnOntkoppel_Click(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
             ProductIngredient mealIngredient = (ProductIngredient)btn.DataContext;
-            //string result = db.DeleteMealIngredient(mealIngredient.GerechtIngredientId);
-            //if (result == Project4db.OK)
-            //{
-            //    PopulateMeals();
-            //    PopulateMealIngredients();
-            //}
-            //else
-            //{
-            //    MessageBox.Show(result);
-            //}
+            string result = db.DeleteProductIngredient(mealIngredient.ProductIngredientId);
+            if (result == Project4db.OK)
+            {
+                PopulateProducts();
+                PopulateProductIngredients();
+            }
+            else
+            {
+                MessageBox.Show(result);
+            }
         }
 
         private void Selection_Click(object sender, RoutedEventArgs e)

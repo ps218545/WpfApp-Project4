@@ -30,5 +30,9 @@ namespace WpfApp_Project4.Models
             get { return productName; }
             set { productName = value; OnPropertyChanged(); }
         }
+
+        // call descripton in
+
+        public ICollection<ProductIngredient>? ProductIngredients { get; set; }
     }
 }
