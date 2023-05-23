@@ -70,7 +70,12 @@ namespace WpfApp_Project4.Models
             set { afmeting = value; OnPropertyChanged(); }
         }
 
-        public ICollection<ProductIngredient>? ProductIngredients { get; set; }
-        public decimal RegelPrijs { get => ProductIngredients == null ? 0 : ProductIngredients.Sum(x => x.Amount); }
+
+
+        public decimal RegelPrijs
+        {
+            get { return Aantal * Product.ProductPrijs; }
+        }
+
     }
 }

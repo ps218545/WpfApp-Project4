@@ -58,7 +58,7 @@
 
                             <StackPanel Orientation="Horizontal">
                                 <Label Width="100" Margin="2" Foreground="White" FontWeight="bold" FontSize="14">Totaalprijs:</Label>
-                                <TextBlock Text="{Binding OneMillion}" Width="auto" Margin="2" TextWrapping="Wrap" Foreground="White" FontSize="14" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding TotaalPrijs, StringFormat='€ 0.00'}" Width="auto" Margin="2" TextWrapping="Wrap" Foreground="White" FontSize="14" VerticalAlignment="Center"/>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">

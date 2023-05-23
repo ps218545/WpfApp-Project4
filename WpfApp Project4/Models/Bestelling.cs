@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using WpfApp_Project4.Views;
 
 namespace WpfApp_Project4.Models
@@ -64,7 +66,28 @@ namespace WpfApp_Project4.Models
         public BestelStatus? BestelStatus
         {
             get { return bestelStatus; }
-            set { bestelStatus = value; OnPropertyChanged(); }
+            set { bestelStatus = value; OnPropertyChanged();}
+        }
+
+        private ObservableCollection<Bestelregel> regel = new ObservableCollection<Bestelregel>();
+        public ObservableCollection<Bestelregel> Regel
+        {
+            get { return regel; }
+            set
+            {
+                if (regel != value)
+                {
+                    regel = value;
+                    OnPropertyChanged(nameof(Regel));
+                    OnPropertyChanged(nameof(TotaalPrijs));
+                }
+            }
+        }
+
+
+        public decimal TotaalPrijs
+        {
+            get { return Regel.Sum(line => line.RegelPrijs); }
         }
 
 

@@ -94,6 +94,8 @@ namespace WpfApp_Project4.Views
             get { return selectedStatus; }
             set { selectedStatus = value; OnPropertyChanged(); }
         }
+
+
         #endregion
 
 
@@ -168,14 +170,7 @@ namespace WpfApp_Project4.Views
         {
             ComboBox comboBox = (ComboBox)sender;
             bool doUpdate = true;
-            //BestelStatus selectedStatus = (BestelStatus)comboBox.SelectedItem;
 
-
-            //if (SelectedStatus == null)
-            //{
-            //    MessageBox.Show("Selecteer eerst de status die u wil wijzigen.");
-            //    return;
-            //}
             if (SelectedBestelling != null && SelectedStatus != null) 
             {
                 SelectedBestelling.StatusId = SelectedStatus.StatusId;

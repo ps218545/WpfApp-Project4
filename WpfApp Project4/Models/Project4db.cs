@@ -71,6 +71,7 @@ namespace WpfApp_Project4.Models
                                 StatusNaam = (string)reader["statusNaam"],
                             }
                         };
+
                         bestellingen.Add(bestelling);
                     }
                     methodResult = OK;
@@ -102,7 +103,7 @@ namespace WpfApp_Project4.Models
                     conn.Open();
                     MySqlCommand sql = conn.CreateCommand();
                     sql.CommandText = @"
-                            SELECT br.bestelregelID, br.bestellingID, br.productId, br.aantal, p.id as 'ProductId', p.name, a.afmetingId, a.afmetingNaam
+                            SELECT br.bestelregelID, br.bestellingID, br.productId, br.aantal, p.id as 'ProductId', p.name, p.price, a.afmetingId, a.afmetingNaam
                             FROM bestelregels br
                             INNER JOIN products p ON p.id = br.productId
                             INNER JOIN afmeting a ON a.afmetingId = br.afmetingId
@@ -122,6 +123,7 @@ namespace WpfApp_Project4.Models
                             {
                                 ProductId = (int)reader["ProductId"],
                                 ProductName = (string)reader["name"],
+                                ProductPrijs = (decimal)reader["price"],
                             },
                             Aantal = (int)reader["aantal"],
                             AfmetingId = (int)reader["afmetingId"],
@@ -129,7 +131,7 @@ namespace WpfApp_Project4.Models
                             {
                                 AfmetingId = (int)reader["afmetingId"],
                                 AfmetingNaam = (string)reader["afmetingNaam"],
-                            },
+                            }
                         };
                         bestelRegels.Add(bestelRegel);
                     }
