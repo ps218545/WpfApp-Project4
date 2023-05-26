@@ -70,8 +70,6 @@ namespace WpfApp_Project4.Models
             set { afmeting = value; OnPropertyChanged(); }
         }
 
-
-
         public decimal RegelPrijs
         {
             get { return Aantal * Product.ProductPrijs; }

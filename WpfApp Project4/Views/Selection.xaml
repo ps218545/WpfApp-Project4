@@ -24,33 +24,41 @@
             <RowDefinition Height="200*" />
             <RowDefinition Height="100*" />
         </Grid.RowDefinitions>
-        <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="55" FontWeight="DemiBold" Grid.Column="2" Grid.Row="0" Margin="0,100,0,0" >De StonksPizza Personeelsapplicatie!</TextBlock>
-        <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="50" FontWeight="DemiBold" Grid.Column="2" Grid.Row="0" Margin="0,200,0,0" >Selectiescherm</TextBlock>
+        <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="55" Grid.Column="2" Grid.Row="0" Margin="0,100,0,0" Foreground="#f71919" FontWeight="Bold">De StonksPizza Personeelsapplicatie!
+            <TextBlock.Effect>
+                <DropShadowEffect ShadowDepth="3" Color="Orange" RenderingBias="Quality"/>
+            </TextBlock.Effect>
+        </TextBlock>
+        <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="50" Grid.Column="2" Grid.Row="0" Margin="0,200,0,0"  FontFamily="Elephant" Foreground="OrangeRed">Selectiescherm
+            <TextBlock.Effect>
+                <DropShadowEffect ShadowDepth="2" Color="Orange" RenderingBias="Quality"/>
+            </TextBlock.Effect>
+        </TextBlock>
         <StackPanel  Margin="0,0,0,0" Grid.Column="2" Grid.Row="2" Orientation="Vertical">
-            <Button Margin="200,0,200,50" FontSize="25" FontWeight="UltraBold" Click="Bestellingen_Click" Height="70" Foreground="White" BorderBrush="Orange" BorderThickness="3">Bestellingen
+            <Button Margin="200,0,200,50" FontSize="25" FontWeight="UltraBold" Click="Bestellingen_Click" Height="70" Foreground="White" BorderBrush="Orange" BorderThickness="3">Bestellingen!
                 <Button.Resources>
                     <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="10"/>
+                        <Setter Property="CornerRadius" Value="20"/>
                     </Style>
                 </Button.Resources>
                 <Button.Background>
                     <ImageBrush ImageSource="../Assets/pizzabg.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,200,200"/>
                 </Button.Background>
             </Button>
-            <Button Margin="200,0,200,50" FontSize="25" FontWeight="UltraBold" Click="Units_Click" Height="70" Foreground="White" BorderBrush="Orange" BorderThickness="4">Units
+            <Button Margin="200,0,200,50" FontSize="25" FontWeight="UltraBold" Click="Units_Click" Height="70" Foreground="White" BorderBrush="Orange" BorderThickness="4">Units en Ingrediënten!
                 <Button.Resources>
                     <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="10"/>
+                        <Setter Property="CornerRadius" Value="20"/>
                     </Style>
                 </Button.Resources>
                 <Button.Background>
                     <ImageBrush ImageSource="../Assets/pizzabg.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,200,200"/>
                 </Button.Background>
             </Button>
-            <Button Margin="200,0,200,50" FontSize="25" FontWeight="UltraBold" Click="Gerecht_Click" Height="70" Foreground="White" BorderBrush="Orange" BorderThickness="4">Gerechten
+            <Button Margin="200,0,200,50" FontSize="25" FontWeight="UltraBold" Click="Gerecht_Click" Height="70" Foreground="White" BorderBrush="Orange" BorderThickness="4">Gerechten!
                 <Button.Resources>
                     <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="10"/>
+                        <Setter Property="CornerRadius" Value="20"/>
                     </Style>
                 </Button.Resources>
                 <Button.Background>
@@ -60,17 +68,17 @@
         </StackPanel>
 
         <StackPanel Grid.Column="3" Grid.Row="3" Orientation="Vertical" Margin="2,2,2,2">
-            <Button x:Name="Mute" FontWeight="Bold" Click="Mute_Click" Margin="5,10,5,10" FontSize="15" BorderBrush="Orange" BorderThickness="3" Foreground="White" Background="Red" Height="40">Mute
+            <Button x:Name="Mute" FontWeight="Bold" Click="Mute_Click" Margin="5,10,5,10" FontSize="15" BorderBrush="Orange" BorderThickness="2" Foreground="White" Background="Red" Height="40">Mute
                 <Button.Resources>
                     <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="10"/>
+                        <Setter Property="CornerRadius" Value="20"/>
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button x:Name="Legal" FontWeight="Bold" Click="Legal_Click" Margin="5,0,5,40" FontSize="15" Grid.Column="3" Grid.Row="4" BorderBrush="Orange" BorderThickness="3" Foreground="White" Background="Red" Height="40">Disclaimer
+            <Button x:Name="Legal" FontWeight="Bold" Click="Legal_Click" Margin="5,0,5,40" FontSize="15" Grid.Column="3" Grid.Row="4" BorderBrush="Orange" BorderThickness="2" Foreground="White" Background="#f71919" Height="40">Disclaimer
                 <Button.Resources>
                     <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="10"/>
+                        <Setter Property="CornerRadius" Value="20"/>
                     </Style>
                 </Button.Resources>
             </Button>

@@ -38,9 +38,8 @@ namespace WpfApp_Project4.Models
             set { productPrijs = value; OnPropertyChanged(); }
         }
 
-
-
-
         public ICollection<ProductIngredient>? ProductIngredients { get; set; }
+
+        public decimal GerechtenPrijs { get => ProductIngredients == null ? 0 : ProductIngredients.Sum(x => x.Amount); }
     }
 }

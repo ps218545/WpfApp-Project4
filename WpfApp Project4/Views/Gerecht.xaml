@@ -29,12 +29,9 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="Red" BorderThickness="2" Background="Orange">
-                        <StackPanel Width="500" Orientation="Vertical" >
-                            <DockPanel Width="400"  Margin="5, 5, 5, 2" >
-                                <TextBlock Text="{Binding ProductName}" TextWrapping="Wrap" Margin="0, 0, 5, 0"/>
-                                <TextBlock Text="{Binding Price, StringFormat='€ 0.00'}" />
-                            </DockPanel>
-                            <TextBlock Text="{Binding Description}" Width="200"  Margin="5, 4, 5, 5" TextWrapping="Wrap"/>
+                        <StackPanel Width="500" Orientation="Horizontal" >
+                            <TextBlock Text="{Binding ProductName}" TextWrapping="Wrap" Margin="5,5,5,5" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding GerechtenPrijs, StringFormat='€ 0.00'}" VerticalAlignment="Center" />
                         </StackPanel>
                     </Border>
                 </DataTemplate>
