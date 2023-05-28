@@ -69,7 +69,14 @@ namespace WpfApp_Project4.Models
             get { return afmeting; }
             set { afmeting = value; OnPropertyChanged(); }
         }
+        public ICollection<ProductIngredient>? ProductIngredients { get; set; }
 
+        //private ProductIngredient? productIngredients;
+        //public ProductIngredient? ProductIngredients
+        //{
+        //    get { return productIngredients; }
+        //    set { productIngredients = value; OnPropertyChanged(); }
+        //}
         public decimal RegelPrijs
         {
             get { return Aantal * Product.ProductPrijs; }

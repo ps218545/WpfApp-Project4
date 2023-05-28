@@ -32,15 +32,14 @@ namespace WpfApp_Project4.Models
             set { name = value; OnPropertyChanged(); }
         }
 
-        private decimal price;
-        public decimal Price
+        private decimal ingredientPrijs;
+        public decimal IngredientPrijs
         {
-            get { return price; }
-            set { price = value; OnPropertyChanged(); }
+            get { return ingredientPrijs; }
+            set { ingredientPrijs = value; OnPropertyChanged(); }
         }
 
         private int unitId;
-
         public int UnitId
         {
             get { return unitId; }
@@ -48,7 +47,6 @@ namespace WpfApp_Project4.Models
         }
 
         private Unit? unit;
-
         public Unit? Unit
         {
             get { return unit; }

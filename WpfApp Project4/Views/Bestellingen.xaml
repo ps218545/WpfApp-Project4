@@ -98,7 +98,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Label Grid.Column="0" Grid.Row="1" Margin="20,0,200,55" FontSize="15">Status geselecteerde bestelling</Label>
+        <Label Grid.Column="0" Grid.Row="1" Margin="20,0,200,55" FontSize="17" FontFamily="Comic Sans MS">Status geselecteerde bestelling</Label>
         <ComboBox Grid.Column="0" Grid.Row="1" Margin="20,35,200,15"  ItemsSource="{Binding Statuss}" SelectedItem="{Binding SelectedStatus, Mode=TwoWay}" SelectionChanged="UpdateStatus">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
@@ -113,26 +113,40 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" x:Name="Mute" Content="Mute" FontSize="15" FontWeight="UltraBold" Foreground="White" BorderBrush="Orange" BorderThickness="3" Click="Mute_Click" Margin="20,20,20,15">
+            <Button Grid.Column="0" x:Name="Mute" FontSize="22" FontFamily="Comic Sans MS" FontWeight="UltraBold" Foreground="White" BorderBrush="Orange" BorderThickness="3" Click="Mute_Click" Margin="20,20,20,15">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>
                     </Style>
                 </Button.Resources>
                 <Button.Background>
-                    <ImageBrush ImageSource="../Assets/pizzabg.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,150,150"/>
+                    <ImageBrush ImageSource="../Assets/pizzabg.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,300,300"/>
                 </Button.Background>
+                <Button.Content>
+                    <TextBlock FontSize="22" FontWeight="UltraBold" FontFamily="Comic Sans MS" Text="Mute">
+                        <TextBlock.Effect>
+                            <DropShadowEffect ShadowDepth="2" Color="Black" Opacity="0.5"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+                </Button.Content>
             </Button>
 
-            <Button Grid.Column="1" Content="Terug" FontSize="15" FontWeight="UltraBold" Foreground="White" BorderBrush="Orange" BorderThickness="3" Click="Selection_Click" Margin="20,20,20,15">
+            <Button Grid.Column="1" Foreground="White" BorderBrush="Orange" BorderThickness="3" Click="Selection_Click" Margin="20,20,20,15">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>
                     </Style>
                 </Button.Resources>
                 <Button.Background>
-                    <ImageBrush ImageSource="../Assets/pizzabg.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,150,150"/>
+                    <ImageBrush ImageSource="../Assets/pizzabg.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,300,300"/>
                 </Button.Background>
+                <Button.Content>
+                    <TextBlock FontSize="22" FontWeight="UltraBold" FontFamily="Comic Sans MS" Text="Terug!">
+                        <TextBlock.Effect>
+                            <DropShadowEffect ShadowDepth="2" Color="Black" Opacity="0.5"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+                </Button.Content>
             </Button>
         </Grid>
         

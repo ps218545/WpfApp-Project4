@@ -21,17 +21,28 @@
             <RowDefinition Height="45*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold">Gerecht</TextBlock>
-        <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold">Koppeling</TextBlock>
-        <TextBlock Grid.Column="2" Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold">Ingrediënten</TextBlock>
+        <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="25" FontFamily="Elephant" Foreground="#f71919">Gerecht
+            <TextBlock.Effect>
+                <DropShadowEffect ShadowDepth="2" Color="#ffcd29" RenderingBias="Quality"/>
+            </TextBlock.Effect></TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="25" FontFamily="Elephant" Foreground="#f71919">Koppeling
+            <TextBlock.Effect>
+                <DropShadowEffect ShadowDepth="2" Color="#ffcd29" RenderingBias="Quality"/>
+            </TextBlock.Effect>
+        </TextBlock>
+        <TextBlock Grid.Column="2" Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="25" FontFamily="Elephant" Foreground="#f71919">Ingrediënten
+            <TextBlock.Effect>
+                <DropShadowEffect ShadowDepth="2" Color="#ffcd29" RenderingBias="Quality"/>
+            </TextBlock.Effect>
+        </TextBlock>
 
         <ListView Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Producten}" SelectedItem="{Binding SelectedProduct}" d:ItemsSource="{d:SampleData ItemCount=15}" Margin="20,20,20,5" Background="LightYellow">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="Red" BorderThickness="2" Background="Orange">
+                    <Border BorderBrush="Red" BorderThickness="1.5" Background="Orange">
                         <StackPanel Width="500" Orientation="Horizontal" >
-                            <TextBlock Text="{Binding ProductName}" TextWrapping="Wrap" Margin="5,5,5,5" VerticalAlignment="Center" />
-                            <TextBlock Text="{Binding GerechtenPrijs, StringFormat='€ 0.00'}" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding ProductName}" Foreground="white" FontWeight="DemiBold" Margin="5,5,5,5" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding GerechtenPrijs, StringFormat='€ 0.00'}" Foreground="white" FontWeight="DemiBold" VerticalAlignment="Center" />
                         </StackPanel>
                     </Border>
                 </DataTemplate>
@@ -47,20 +58,26 @@
             <ListView Grid.Column="1" Grid.Row="0" ItemsSource="{Binding ProductIngredients}" SelectedItem="{Binding SelectedProductIngredient}" d:ItemsSource="{d:SampleData ItemCount=15}" Margin="20,20,20,50" Background="LightYellow">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Red" BorderThickness="2" Background="Orange">
+                        <Border BorderBrush="Red" BorderThickness="1.5" Background="Orange">
                             <Grid Width="300">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <Button Grid.Column="1" VerticalAlignment="Top" Margin="5" Click="BtnOntkoppel_Click" Padding="5,5,5,5">Ontkoppel</Button>
+                                <Button Grid.Column="1" VerticalAlignment="Top" Margin="5" Background="#f71919" Foreground="White" FontFamily="Comic Sans MS" Click="BtnOntkoppel_Click" Padding="5,5,5,5">Ontkoppel
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="5"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
                                 <StackPanel Grid.Column="0">
-                                    <TextBlock Text="{Binding Ingredient.Name}" Margin="5" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding Ingredient.Name}" Foreground="white" FontWeight="DemiBold" Margin="5" TextWrapping="Wrap"/>
                                     <DockPanel Width="auto" >
-                                        <TextBlock Text="{Binding AantalIngr}" Margin="5" />
-                                        <TextBlock Text="{Binding Ingredient.Unit.UnitNaam}" Margin="5" />
+                                        <TextBlock Text="{Binding AantalIngr}" Foreground="white" FontWeight="DemiBold" Margin="5" />
+                                        <TextBlock Text="{Binding Ingredient.Unit.UnitNaam}" Foreground="white" FontWeight="DemiBold" Margin="5" />
                                         <TextBlock Text=":" Margin="5, 5, 0, 5" />
-                                        <TextBlock Text="{Binding Amount, StringFormat='€ 0.00'}" Margin="5" />
+                                        <TextBlock Text="{Binding Amount, StringFormat='€ 0.00'}" Foreground="white" FontWeight="DemiBold" Margin="5" />
                                     </DockPanel>
                                 </StackPanel>
                             </Grid>
@@ -70,23 +87,29 @@
             </ListView>
 
             <StackPanel Grid.Column="1" Grid.Row="1" Margin="10" >
-                <TextBlock Text="Maaltijd:"/>
-                <TextBlock DataContext="{Binding SelectedProduct}" Text="{Binding ProductName}"/>
-                <TextBlock Text="Ingrediënt:"/>
-                <TextBlock DataContext="{Binding SelectedIngredient}" Text="{Binding Name}"/>
-                <TextBlock Text="Aantal:"/>
-                <TextBox Text="{Binding AantalIngr}"/>
-                <Button Content="Voeg Ingrediënt Toe" Click="BtnKoppel_Click"/>
+                <TextBlock FontSize="12" FontFamily="Comic Sans MS" Text="Maaltijd:"/>
+                <TextBlock DataContext="{Binding SelectedProduct}" Text="{Binding ProductName}" Margin="15,0,0,0"/>
+                <TextBlock FontSize="12" FontFamily="Comic Sans MS" Text="Ingrediënt:"/>
+                <TextBlock DataContext="{Binding SelectedIngredient}" Text="{Binding Name}" Margin="15,0,0,0"/>
+                <TextBlock FontSize="12" FontFamily="Comic Sans MS" Text="Aantal:"/>
+                <TextBox Text="{Binding AantalIngr}" Margin="15,0,0,0"/>
+                <Button Content="Voeg Ingrediënt Toe" Click="BtnKoppel_Click" BorderBrush="Orange" BorderThickness="1" Background="#f71919" Foreground="White" FontFamily="Comic Sans MS">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
             </StackPanel>
         </Grid>
 
         <ListView Grid.Column="2" Grid.Row="1" ItemsSource="{Binding Ingredients}" SelectedItem="{Binding SelectedIngredient}" d:ItemsSource="{d:SampleData ItemCount=10}" Margin="20,20,20,5" Background="LightYellow">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="Red" BorderThickness="2" Background="Orange">
+                    <Border BorderBrush="Red" BorderThickness="1.5" Background="Orange">
                         <StackPanel Width="400" Orientation="Horizontal" >
-                            <TextBlock Text="{Binding IngredientId}" Width="auto"  Margin="5" TextWrapping="Wrap"/>
-                            <TextBlock Text="{Binding Name}" Width="auto"  Margin="5" TextWrapping="Wrap"/>
+                            <TextBlock Text="{Binding Name}" Foreground="white" FontWeight="DemiBold" Margin="5" />
+                            <TextBlock Text="{Binding Price, StringFormat='€ 0.00'}" Foreground="white" FontWeight="DemiBold"  Margin="5"/>
                         </StackPanel>
                     </Border>
                 </DataTemplate>
@@ -100,18 +123,25 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" x:Name="Mute" Content="Mute" FontSize="15" FontWeight="UltraBold" Foreground="White" BorderBrush="Orange" BorderThickness="3" Click="Mute_Click" Margin="10,20,20,15">
+            <Button Grid.Column="0" x:Name="Mute" FontSize="22" FontWeight="UltraBold" FontFamily="Comic Sans MS" Foreground="White" BorderBrush="Orange" BorderThickness="3" Click="Mute_Click" Margin="10,20,20,15">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>
                     </Style>
                 </Button.Resources>
                 <Button.Background>
-                    <ImageBrush ImageSource="../Assets/pizzabg.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,150,150"/>
+                    <ImageBrush ImageSource="../Assets/pizzabg.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,200,200"/>
                 </Button.Background>
+                <Button.Content>
+                    <TextBlock FontSize="22" FontWeight="UltraBold" FontFamily="Comic Sans MS" Text="Mute">
+                        <TextBlock.Effect>
+                            <DropShadowEffect ShadowDepth="2" Color="Black" Opacity="0.5"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+                </Button.Content>
             </Button>
 
-            <Button Grid.Column="1" Content="Terug" FontSize="15" FontWeight="UltraBold" Foreground="White" BorderBrush="Orange" BorderThickness="3" Click="Selection_Click" Margin="10,20,20,15">
+            <Button Grid.Column="1" FontSize="25" FontWeight="UltraBold" FontFamily="Comic Sans MS" Foreground="White" BorderBrush="Orange" BorderThickness="3" Click="Selection_Click" Margin="10,20,20,15">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>
@@ -120,6 +150,13 @@
                 <Button.Background>
                     <ImageBrush ImageSource="../Assets/pizzabg.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,150,150"/>
                 </Button.Background>
+                <Button.Content>
+                    <TextBlock FontSize="22" FontWeight="UltraBold" FontFamily="Comic Sans MS" Text="Terug!">
+                        <TextBlock.Effect>
+                            <DropShadowEffect ShadowDepth="2" Color="Black" Opacity="0.5"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+                </Button.Content>
             </Button>
         </Grid>
 

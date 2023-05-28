@@ -83,13 +83,9 @@ namespace WpfApp_Project4.Models
                 }
             }
         }
-
-
         public decimal TotaalPrijs
         {
             get { return Regel.Sum(line => line.RegelPrijs); }
         }
-
-
     }
 }

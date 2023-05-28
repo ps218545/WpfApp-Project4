@@ -276,7 +276,7 @@ namespace WpfApp_Project4.Views
                 MessageBox.Show("Selecteer een eenheid.");
                 return;
             }
-            if (NewIngredient.Price < 0)
+            if (NewIngredient.IngredientPrijs < 0)
             {
                 MessageBox.Show("Wijzig de prijs. Deze mag niet negatief zijn.");
                 return;
@@ -312,7 +312,7 @@ namespace WpfApp_Project4.Views
                 MessageBox.Show("Selecteer een eenheid.");
                 return;
             }
-            if (SelectedIngredient.Price < 0)
+            if (SelectedIngredient.IngredientPrijs < 0)
             {
                 MessageBox.Show("Wijzig de prijs. Deze mag niet negatief zijn.");
                 return;

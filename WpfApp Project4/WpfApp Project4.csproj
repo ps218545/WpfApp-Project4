@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\feddy.png" />
     <None Remove="Assets\Pizz.png" />
     <None Remove="Assets\pizzabg.png" />
     <None Remove="Assets\seamlesspizza.png" />
@@ -19,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\feddy.png" />
     <Resource Include="Assets\Pizz.png" />
     <Resource Include="Assets\pizzabg.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -33,7 +35,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Assets\muziek.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

@@ -71,6 +71,7 @@ namespace WpfApp_Project4.Models
                                 StatusNaam = (string)reader["statusNaam"],
                             }
                         };
+                        GetTotaalPrijs(bestelling.BestellingId, bestelling.Regel);
 
                         bestellingen.Add(bestelling);
                     }
@@ -85,6 +86,62 @@ namespace WpfApp_Project4.Models
             }
             return methodResult;
         }
+
+        public string GetTotaalPrijs(int bestellingId, ICollection<Bestelregel> bestelRegels)
+        {
+            if (bestelRegels == null)
+            {
+                throw new ArgumentException("Ongeldig argument bij gebruik van GetBestelRegelsByBestelling");
+            }
+
+            string methodResult = UNKNOWN;
+
+
+            using (MySqlConnection conn = new(connString))
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand sql = conn.CreateCommand();
+                    sql.CommandText = @"
+                            SELECT br.bestelregelID, br.bestellingID, br.productId, br.aantal, p.id as 'ProductId', p.name, p.price
+                            FROM bestelregels br
+                            INNER JOIN products p ON p.id = br.productId
+                            WHERE br.bestellingID = @bestellingID
+                        ";
+                    sql.Parameters.AddWithValue("@bestellingID", bestellingId);
+                    MySqlDataReader reader = sql.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Bestelregel bestelRegel = new()
+                        {
+                            BestelRegelId = (int)reader["bestelregelID"],
+                            BestellingId = (int)reader["bestellingID"],
+                            ProductId = (int)reader["ProductId"],
+                            Product = new()
+                            {
+                                ProductId = (int)reader["ProductId"],
+                                ProductPrijs = (decimal)reader["price"],
+                            },
+                            Aantal = (int)reader["aantal"],
+                        };
+                        bestelRegels.Add(bestelRegel);
+                    }
+                    methodResult = OK;
+
+                }
+                catch (Exception e)
+                {
+                    Console.Error.WriteLine(nameof(GetTotaalPrijs));
+                    Console.Error.WriteLine(e.Message);
+                    methodResult = e.Message;
+                }
+            }
+            return methodResult;
+        }
+
+
 
         public string GetBestelRegelsByBestelling(int bestellingId, ICollection<Bestelregel> bestelRegels)
         {
@@ -133,6 +190,7 @@ namespace WpfApp_Project4.Models
                                 AfmetingNaam = (string)reader["afmetingNaam"],
                             }
                         };
+
                         bestelRegels.Add(bestelRegel);
                     }
                     methodResult = OK;
@@ -542,7 +600,7 @@ namespace WpfApp_Project4.Models
                         {
                             IngredientId = (int)reader["id"],
                             Name = (string)reader["name"],
-                            Price = (decimal)reader["price"],
+                            IngredientPrijs = (decimal)reader["price"],
                             UnitId = (int)reader["unit_id"],
                             Unit = new Unit()
                             {
@@ -591,7 +649,7 @@ namespace WpfApp_Project4.Models
                         {
                             IngredientId = (int)reader["ingredientId"],
                             Name = (string)reader["name"],
-                            Price = (decimal)reader["price"],
+                            IngredientPrijs = (decimal)reader["price"],
                             UnitId = (int)reader["unit_id"],
                             Unit = new Unit()
                             {
@@ -617,7 +675,7 @@ namespace WpfApp_Project4.Models
         public string CreateIngredient(Ingredient ingredient)
         {
             if (ingredient == null || string.IsNullOrEmpty(ingredient.Name)
-                || ingredient.Price < 0 || ingredient.UnitId == 0)
+                || ingredient.IngredientPrijs < 0 || ingredient.UnitId == 0)
             {
                 throw new ArgumentException("Ongeldig argument bij gebruik van CreateIngredient");
             }
@@ -636,7 +694,7 @@ namespace WpfApp_Project4.Models
                     VALUES  (NULL,         @name, @price, @unitId);
                     ";
                     sql.Parameters.AddWithValue("@name", ingredient.Name);
-                    sql.Parameters.AddWithValue("@price", ingredient.Price);
+                    sql.Parameters.AddWithValue("@price", ingredient.IngredientPrijs);
                     sql.Parameters.AddWithValue("@unitId", ingredient.UnitId);
 
                     if (sql.ExecuteNonQuery() == 1)
@@ -661,7 +719,7 @@ namespace WpfApp_Project4.Models
         public string UpdateIngredient(int ingredientId, Ingredient ingredient)
         {
             if (ingredient == null || string.IsNullOrEmpty(ingredient.Name)
-                || ingredient.Price < 0 || ingredient.UnitId == 0)
+                || ingredient.IngredientPrijs < 0 || ingredient.UnitId == 0)
             {
                 throw new ArgumentException("Ongeldig argument bij gebruik van UpdateIngredient");
             }
@@ -683,7 +741,7 @@ namespace WpfApp_Project4.Models
                         ";
                     sql.Parameters.AddWithValue("@ingredientId", ingredientId);
                     sql.Parameters.AddWithValue("@name", ingredient.Name);
-                    sql.Parameters.AddWithValue("@price", ingredient.Price);
+                    sql.Parameters.AddWithValue("@price", ingredient.IngredientPrijs);
                     sql.Parameters.AddWithValue("@unitId", ingredient.UnitId);
 
                     if (sql.ExecuteNonQuery() == 1)
@@ -830,7 +888,7 @@ namespace WpfApp_Project4.Models
                             {
                                 IngredientId = (int)reader["IngrID"],
                                 Name = (string)reader["name"],
-                                Price = (decimal)reader["price"],
+                                IngredientPrijs = (decimal)reader["price"],
                                 UnitId = (int)reader["unit_id"],
                                 Unit = new()
                                 {

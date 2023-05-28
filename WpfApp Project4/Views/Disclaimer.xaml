@@ -124,15 +124,22 @@
         </StackPanel>
 
 
-        <Button Grid.Column="2" Grid.Row="15" Content="Terug" Margin="25,20,25,20" FontSize="15" FontWeight="UltraBold" BorderBrush="Orange" Foreground="White" BorderThickness="3" Click="Selection_Click">
+        <Button Grid.Column="2" Grid.Row="15" Margin="25,20,25,20" BorderBrush="Orange" Foreground="White" BorderThickness="3" Click="Selection_Click">
             <Button.Resources>
                 <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="10"/>
+                    <Setter Property="CornerRadius" Value="25"/>
                 </Style>
             </Button.Resources>
             <Button.Background>
-                <ImageBrush ImageSource="../Assets/pizzabg.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,150,150"/>
+                <ImageBrush ImageSource="../Assets/pizzabg.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,200,200"/>
             </Button.Background>
+            <Button.Content>
+                <TextBlock FontSize="20" FontWeight="UltraBold" FontFamily="Comic Sans MS" Text="Terug!">
+                    <TextBlock.Effect>
+                        <DropShadowEffect ShadowDepth="2" Color="Black" Opacity="0.5"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Button.Content>
         </Button>
     </Grid>
 </Window>

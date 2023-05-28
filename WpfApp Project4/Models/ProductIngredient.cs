@@ -60,7 +60,13 @@ namespace WpfApp_Project4.Models
             set { aantalIngr = value; OnPropertyChanged(); }
         }
 
-        public decimal Amount { get => Ingredient == null ? 0.0m : AantalIngr * Ingredient.Price; }
+        private int bestelRegelId;
+        public int BestelRegelId
+        {
+            get { return bestelRegelId; }
+            set { bestelRegelId = value; OnPropertyChanged(); }
+        }
 
+        public decimal Amount { get => Ingredient == null ? 0.0m : AantalIngr * Ingredient.IngredientPrijs; }
     }
 }
